@@ -1,0 +1,25 @@
+<div class="game-container">
+  <h1>¡Hora de Cepillar los Dientes!</h1>
+
+  <div class="teeth-container">
+    <!-- Renderizamos los dientes como círculos -->
+    <div *ngFor="let tooth of teeth" 
+         class="tooth"
+         [style.left.px]="tooth.x"
+         [style.top.px]="tooth.y"
+         [style.width.px]="tooth.radius * 2"
+         [style.height.px]="tooth.radius * 2"
+         (click)="brushTooth()">
+    </div>
+  </div>
+
+  <div class="score">
+    <p>Puntuación: {{score}}</p>
+  </div>
+
+  <div class="timer">
+    <p>Tiempo restante: {{timer}} segundos</p>
+  </div>
+
+  <button *ngIf="gameOver" (click)="resetGame()">Reiniciar Juego</button>
+</div>

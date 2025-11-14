@@ -1,0 +1,86 @@
+// Colores personalizados
+$blue-main: #2563EB;
+$blue-light: #3B82F6;
+$green-sec: #10B981;
+$yellow-warning: #F59E0B;
+$white: #FFFFFF;
+$gray-light: #f8f9fa;
+
+// Estilos generales
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: $gray-light;
+}
+
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.hero {
+  background-color: $blue-main;
+  color: $white;
+  padding: 50px 0;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.form label {
+  font-weight: bold;
+  color: $blue-main;
+}
+
+.form-control {
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+button:disabled {
+  opacity: 0.6;
+}
+
+button:hover {
+background-color: #2563EB; // Color azul simple, por ejemplo.
+
+}
+
+.small {
+  color: #6c757d;
+}
+
+// Estilo de los botones de horarios
+.slots button {
+  width: 100px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.slots .btn-success {
+  background-color: $green-sec;
+  color: $white;
+}
+
+.slots .btn-danger {
+  background-color: $yellow-warning;
+  color: $white;
+}
+
+// Acciones y botones
+.actions button {
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.actions button:disabled {
+  background-color: $blue-light;
+}
+
+.actions button:hover {
+  background-color: $blue-light;
+}

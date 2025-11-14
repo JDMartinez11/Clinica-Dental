@@ -1,0 +1,42 @@
+<div class="ar-container">
+  <!-- Título con AOS (Animación de desvanecimiento) -->
+  <h2 class="text-center text-primary mb-4" data-aos="fade-up" data-aos-duration="1000">
+    Bienvenido a la Realidad Aumentada
+  </h2>
+
+  <!-- Mostrar el modelo 3D solo si `selectedModel` está asignado -->
+  <model-viewer 
+    *ngIf="getSelectedSceneModel()"
+    [src]="getSelectedSceneModel()"
+    [ios-src]="getSelectedSceneIOSModel()"
+    alt="Modelo 3D de tratamiento dental"
+    auto-rotate
+    camera-controls
+    background-color="#ffffff"
+    class="model-viewer"
+    data-aos="fade-up"
+    data-aos-duration="1500"
+    style="max-width: 100%; height: 500px; margin-top: 30px; border-radius: 10px;"
+  >
+  </model-viewer>
+
+  <!-- Descripción de la escena con AOS -->
+  <div class="scene-description mt-4" data-aos="fade-up" data-aos-duration="1500">
+    <p>{{ getSelectedSceneDescription() }}</p>
+  </div>
+
+  <!-- Selector de escena con estilo de botones interactivos -->
+  <div class="scene-selector text-center mt-4">
+    <div class="btn-group" role="group" aria-label="Selector de escenas">
+      <button 
+        *ngFor="let scene of scenes" 
+        (click)="selectScene(scene.id)" 
+        class="btn btn-outline-primary btn-lg m-2"
+        data-aos="fade-up"
+        data-aos-duration="2000"
+      >
+        {{ scene.name }}
+      </button>
+    </div>
+  </div>
+</div>

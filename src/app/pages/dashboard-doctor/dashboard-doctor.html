@@ -1,0 +1,24 @@
+<section class="top">
+  <h2>Mis Citas</h2>
+  <button (click)="logout()">Cerrar sesión</button>
+</section>
+
+<div *ngIf="loading">Cargando…</div>
+<p *ngIf="!loading && error" class="err">{{ error }}</p>
+
+<table *ngIf="!loading && appts.length" class="tbl">
+  <thead>
+    <tr><th>Fecha</th><th>Hora</th><th>Paciente</th><th>Servicio</th><th>Notas</th></tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of appts">
+      <td>{{ a.date }}</td>
+      <td>{{ a.hour }}</td>
+      <td>{{ a.patient_name }}</td>
+      <td>{{ a.service }}</td>
+      <td>{{ a.notes || '—' }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!loading && !appts.length">Sin citas registradas.</p>

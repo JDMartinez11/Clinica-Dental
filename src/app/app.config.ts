@@ -1,13 +1,17 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
-
+import { ApplicationConfig, provideZoneChangeDetection, isDevMode } from '@angular/core';
+import { provideRouter, withHashLocation } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { provideServiceWorker } from '@angular/service-worker';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideZonelessChangeDetection(),
-    provideRouter(routes), provideClientHydration(withEventReplay())
-  ]
+    provideZoneChangeDetection({ eventCoalescing: true, runCoalescing: true }),
+    provideRouter(routes, withHashLocation()), // URLs tipo /#/servicios
+    provideHttpClient(),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000'
+    })
+  ],
 };

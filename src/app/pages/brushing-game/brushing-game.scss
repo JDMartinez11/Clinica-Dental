@@ -1,0 +1,52 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f8ff;
+  height: 100vh;
+}
+
+h1 {
+  font-family: 'Arial', sans-serif;
+  color: #4CAF50;
+  text-align: center;
+}
+
+.teeth-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+}
+
+.tooth {
+  position: absolute;
+  background-color: #ffcc00;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.tooth:hover {
+  transform: scale(1.1);
+}
+
+.score, .timer {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #45a049;
+}

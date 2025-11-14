@@ -1,0 +1,70 @@
+// Colores personalizados
+$blue-main: #2563EB;
+$blue-light: #3B82F6;
+$green-sec: #10B981;
+$yellow-warning: #F59E0B;
+$white: #FFFFFF;
+$gray-light: #f8f9fa;
+
+// Fuentes personalizadas
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap');
+
+// Estilos generales
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: $gray-light;
+  margin: 0;
+  padding: 0;
+}
+
+.ar-container {
+  background-color: $white;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  color: $blue-main;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.model-viewer {
+  width: 100%;
+  height: 500px; /* Fijamos una altura específica para que el modelo tenga espacio suficiente */
+  margin-top: 30px;
+  border-radius: 0; /* Quitamos el border-radius para asegurar que no afecte al modelo 3D */
+  box-shadow: none; /* Removemos la sombra del modelo 3D */
+}
+
+.scene-description p {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.scene-selector button {
+  font-size: 1.1rem;
+  margin: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.scene-selector button:hover {
+  background-color: $blue-light;
+  color: $white;
+  transform: scale(1.05);
+}
+
+.btn-group .btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+}
+
+.text-center {
+  text-align: center;
+}

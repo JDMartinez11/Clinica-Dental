@@ -1,0 +1,75 @@
+<section class="hero text-center bg-primary text-white py-5">
+  <h1 class="display-4">Agendar Cita</h1>
+</section>
+
+<div *ngIf="loading" class="text-center">
+  <p>Cargando…</p>
+</div>
+<div class="alert alert-danger" *ngIf="!loading && err">
+  {{ err }}
+</div>
+<div class="alert alert-success" *ngIf="!loading && msg">
+  {{ msg }}
+</div>
+
+<section class="form mt-4" *ngIf="!loading">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <label for="doctor">Doctor</label>
+        <select id="doctor" class="form-control" [(ngModel)]="model.doctor_id" (change)="refreshTaken()">
+          <option value="">— Selecciona —</option>
+          <option *ngFor="let d of doctors" [value]="d.id">{{ d.name }} — {{ d.specialty }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="date">Fecha</label>
+        <input type="date" id="date" class="form-control" [(ngModel)]="model.date" (change)="refreshTaken()"/>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <label for="service">Servicio</label>
+        <input type="text" id="service" class="form-control" placeholder="Ej. Limpieza, Blanqueamiento…" [(ngModel)]="model.service"/>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <label for="patient-name">Paciente</label>
+        <input type="text" id="patient-name" class="form-control" [(ngModel)]="model.patient_name"/>
+      </div>
+
+      <div class="col-md-6">
+        <label for="notes">Notas</label>
+        <input type="text" id="notes" class="form-control" [(ngModel)]="model.notes"/>
+      </div>
+    </div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <label for="time">Horario</label>
+    <div class="slots">
+      <button type="button" class="btn btn-outline-secondary mr-2" *ngFor="let s of slots" 
+              [disabled]="slotDisabled(s)" 
+              [class.btn-success]="model.start_time === s" 
+              [class.btn-danger]="slotDisabled(s)"
+              (click)="pickSlot(s)">
+        {{ s }}
+      </button>
+    </div>
+    <small class="form-text text-muted" *ngIf="!model.doctor_id || !model.date">Selecciona doctor y fecha para ver horarios</small>
+  </div>
+</div>
+
+
+    <div class="actions text-center mt-4">
+      <button type="button" class="btn btn-primary btn-lg" (click)="submit()" 
+              [disabled]="saving || !model.doctor_id || !model.date || !model.start_time || !model.patient_name || !model.service">
+        {{ saving ? 'Guardando…' : 'Confirmar cita y descargar PDF' }}
+      </button>
+    </div>
+  </div>
+</section>

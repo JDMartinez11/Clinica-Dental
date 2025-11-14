@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+// Importar fuentes externas
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap');
+
+// Establecer los colores personalizados
+$blue-main: #2563EB;
+$blue-light: #3B82F6;
+$white: #FFFFFF;
+$green-sec: #10B981;
+
+// Aplicar la paleta de colores y tipografía
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: $white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bebas Neue', sans-serif;
+  color: $blue-main;
+}
+
+button {
+  background-color: $blue-main;
+  color: $white;
+  border-radius: 8px;
+  padding: 10px 20px;
+  border: none;
+}
+
+button:hover {
+  background-color: $blue-light;
+}
+
+a {
+  color: $blue-main;
+}
+
+a:hover {
+  color: $green-sec;
+}
+
+// Personalizar otros elementos como los botones o los iconos si es necesario

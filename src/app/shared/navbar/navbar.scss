@@ -1,0 +1,37 @@
+/* navbar.scss */
+nav {
+  background-color: #333;  /* Cambia el color de fondo */
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;  /* Asegúrate de que la barra esté por encima de otros elementos */
+}
+
+.navbar-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.1rem;
+  padding: 5px 10px;
+}
+
+.navbar-links a:hover {
+  background-color: #555;
+  border-radius: 4px;
+}

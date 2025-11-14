@@ -1,0 +1,12 @@
+{
+  "services": [
+    { "id": 1, "name": "Limpieza Dental", "price": 600, "desc": "Profilaxis y pulido." },
+    { "id": 2, "name": "Blanqueamiento", "price": 1800, "desc": "Tratamiento estético profesional." },
+    { "id": 3, "name": "Ortodoncia", "price": 1200, "desc": "Mensualidad de brackets metálicos." }
+  ],
+  "doctors": [
+    { "id": 1, "name": "Dra. Sofía Ruiz", "email": "sofia@dentalcare.mx", "specialty": "Endodoncia" },
+    { "id": 2, "name": "Dr. Luis Pérez", "email": "luis@dentalcare.mx", "specialty": "Ortodoncia" }
+  ],
+  "appointments": []
+}
