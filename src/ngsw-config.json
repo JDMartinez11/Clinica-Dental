@@ -1,0 +1,32 @@
+{
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app-assets",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/manifest.webmanifest",
+          "/assets/**"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-data",
+      "urls": [
+        "https://api.example.com/**"
+      ],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxSize": 100,
+        "maxAge": "30d",
+        "timeout": "10s"
+      }
+    }
+  ]
+}

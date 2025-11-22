@@ -13,4 +13,5 @@ import { FooterComponent } from './shared/footer/footer';   // 👈 sin .compone
     <app-footer></app-footer>
   `,
 })
+
 export class App {}

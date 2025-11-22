@@ -38,7 +38,7 @@
           },
           "configurations": {
             "production": {
-              "serviceWorker": "ngsw-config.json", 
+              "serviceWorker": "ngsw-config.json",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -46,7 +46,7 @@
                 }
               ],
               "outputHashing": "all",
-              "optimization": true,  
+              "optimization": true,
               "sourceMap": false,
               "namedChunks": false,
               "aot": true

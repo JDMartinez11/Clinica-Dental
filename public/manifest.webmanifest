@@ -1,11 +1,11 @@
 {
-  "name": "Dental Clinic",
-  "short_name": "Dental",
-  "description": "Aplicación web para gestión de citas dentales",
+  "name": "Mi Aplicación Angular",
+  "short_name": "MiApp",
+  "description": "Aplicación Progresiva en Angular",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
+  "theme_color": "#1976d2",
   "icons": [
     {
       "src": "assets/icons/icon-192x192.png",
