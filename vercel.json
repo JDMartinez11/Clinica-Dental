@@ -2,7 +2,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist/dental-clinic/browser",
   "framework": "angular",
-  "nodeVersion": "20.x",
   "env": {
     "ANGULAR_ENV": "production"
   },
