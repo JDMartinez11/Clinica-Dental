@@ -23,16 +23,16 @@ export const appConfig: ApplicationConfig = {
       registrationStrategy: 'registerWhenStable:30000'
     }),
 
-    // Firebase App con la config correcta de "dental-clinic-273f2"
+    // Firebase App con config desde variables de entorno
     provideFirebaseApp(() =>
       initializeApp({
-        apiKey: "AIzaSyBkSl-bVBYytl-KKmvujs27JOlO0WC0Guc",
-        authDomain: "dental-clinic-273f2.firebaseapp.com",
-        projectId: "dental-clinic-273f2",
-        storageBucket: "dental-clinic-273f2.firebasestorage.app",
-        messagingSenderId: "988391503024",
-        appId: "1:988391503024:web:2f61133e18c5af05117775",
-        measurementId: "G-R1NR76JB42"
+        apiKey: process.env['NG_APP_FIREBASE_API_KEY'] || "",
+        authDomain: process.env['NG_APP_FIREBASE_AUTH_DOMAIN'] || "",
+        projectId: process.env['NG_APP_FIREBASE_PROJECT_ID'] || "",
+        storageBucket: process.env['NG_APP_FIREBASE_STORAGE_BUCKET'] || "",
+        messagingSenderId: process.env['NG_APP_FIREBASE_MESSAGING_SENDER_ID'] || "",
+        appId: process.env['NG_APP_FIREBASE_APP_ID'] || "",
+        measurementId: process.env['NG_APP_FIREBASE_MEASUREMENT_ID'] || ""
       })
     ),
 
