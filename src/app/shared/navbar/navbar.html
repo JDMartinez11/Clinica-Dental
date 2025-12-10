@@ -1,13 +1,80 @@
-<nav>
+<nav class="navbar">
   <div class="navbar-logo">
-    <a href="/">Mi Clínica Dental</a>
+    <a routerLink="/home" class="navbar-brand">
+      <img
+        src="assets/images/logo.png"
+        alt="Mi Clínica Dental"
+        class="navbar-logo-img"
+      />
+      <span class="logo-text">Mi Clínica Dental</span>
+    </a>
   </div>
+
   <ul class="navbar-links">
-    <li><a href="/#inicio">Inicio</a></li>
-    <li><a href="/#servicios">Servicios</a></li>
-    <li><a href="/#citas">Citas</a></li>
-    <li><a href="/#ar">Realidad Aumentada</a></li>
-    <li><a href="/#login-doctor">Login Doctor</a></li>
-    <li><a href="/#brushing-game">Juego</a></li>
+    <li>
+      <a
+        routerLink="/home"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Inicio
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/servicios" routerLinkActive="active">
+        Servicios
+      </a>
+    </li>
+
+    <!-- 👇 Citas SOLO en navegador normal, NO en PWA instalada -->
+    <li *ngIf="!esPwa">
+      <a routerLink="/citas" routerLinkActive="active">
+        Citas
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/ar" routerLinkActive="active">
+        Realidad Aumentada
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/juego" routerLinkActive="active">
+        Juego
+      </a>
+    </li>
+
+    <!-- 👇 Login Usuario / Doctor solo cuando NO es PWA y NO hay sesión -->
+    <ng-container *ngIf="!estaLogueado && !esPwa">
+      <li>
+        <a routerLink="/login" routerLinkActive="active">
+          Login Usuario
+        </a>
+      </li>
+      <li>
+        <a routerLink="/login-doctor" routerLinkActive="active">
+          Login Doctor
+        </a>
+      </li>
+    </ng-container>
+
+    <!-- 👇 Si SÍ está logueado (web o PWA): saludo + cerrar sesión -->
+    <ng-container *ngIf="estaLogueado">
+      <li class="navbar-user">
+        <span *ngIf="usuarioPerfil?.nombre; else correoTpl">
+          Hola, {{ usuarioPerfil?.nombre }}
+        </span>
+        <ng-template #correoTpl>
+          Hola, {{ usuarioPerfil?.email }}
+        </ng-template>
+      </li>
+      <li>
+        <button type="button" class="btn-logout" (click)="logout()">
+          Cerrar sesión
+        </button>
+      </li>
+    </ng-container>
   </ul>
 </nav>

@@ -1,0 +1,174 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fdf2ff, #e0f2fe, #dcfce7);
+  padding-bottom: 32px;
+}
+
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Hero */
+.paciente-hero {
+  padding: 32px 0 24px;
+}
+
+.hero-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: #1d4ed8;
+  background: rgba(191, 219, 254, 0.9);
+  margin-bottom: 10px;
+}
+
+.paciente-hero h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.hero-sub {
+  font-size: 0.95rem;
+  color: #6b7280;
+  max-width: 440px;
+}
+
+/* Stats */
+.main {
+  margin-top: 4px;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(148, 163, 184, 0.35);
+}
+
+.stat-blue {
+  background: #eff6ff;
+}
+.stat-green {
+  background: #dcfce7;
+}
+.stat-yellow {
+  background: #fef9c3;
+}
+
+.stat-number {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Lista de citas */
+.list-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.text-muted {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.cita-card {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(148, 163, 184, 0.35);
+}
+
+.cita-main {
+  display: flex;
+  align-items: flex-start;
+}
+
+.cita-bar {
+  width: 4px;
+  border-radius: 999px;
+  background: #60a5fa;
+  margin-right: 10px;
+}
+
+.cita-info {
+  flex: 1;
+}
+
+.cita-servicio {
+  font-weight: 600;
+  color: #111827;
+}
+
+.cita-fecha {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.cita-paciente {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.cita-status {
+  margin-left: 10px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+.badge-completada {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge-pendiente {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.alert {
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.alert-danger {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.text-center {
+  text-align: center;
+  margin-top: 24px;
+}

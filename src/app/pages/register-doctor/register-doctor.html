@@ -1,0 +1,59 @@
+<div class="login-container">
+  <h2>Registro de Doctores 🦷</h2>
+
+  <form (ngSubmit)="register()" class="login-form">
+    <input
+      type="text"
+      [(ngModel)]="nombre"
+      name="nombre"
+      placeholder="Nombre completo"
+      required
+    />
+
+    <input
+      type="email"
+      [(ngModel)]="email"
+      name="email"
+      placeholder="Correo electrónico"
+      required
+    />
+
+    <input
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      placeholder="Contraseña"
+      required
+    />
+
+    <input
+      type="text"
+      [(ngModel)]="telefono"
+      name="telefono"
+      placeholder="Teléfono"
+    />
+
+    <input
+      type="text"
+      [(ngModel)]="specialty"
+      name="specialty"
+      placeholder="Especialidad (ej. Odontología)"
+    />
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Registrando…' : 'Registrar Doctor' }}
+    </button>
+
+    <p *ngIf="error" class="error">{{ error }}</p>
+    <p *ngIf="msg" class="success">{{ msg }}</p>
+  </form>
+  <button
+  type="button"
+  class="btn btn-outline-danger w-100 mt-3"
+  (click)="loginWithGoogle()"
+  [disabled]="loading"
+>
+  Entrar con Google
+</button>
+</div>
+

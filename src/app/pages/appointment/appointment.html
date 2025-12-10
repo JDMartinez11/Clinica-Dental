@@ -1,75 +1,299 @@
-<section class="hero text-center bg-primary text-white py-5">
-  <h1 class="display-4">Agendar Cita</h1>
+<section class="hero text-center">
+  <div class="container">
+    <div class="hero-badge">
+      🦷 Agenda tu cita en menos de 1 minuto
+    </div>
+
+    <h1 class="display-4">Agendar Cita</h1>
+
+    <p class="hero-subtitle">
+      Elige doctor, horario y descarga al instante el comprobante en PDF.
+    </p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-number">+1,200</span>
+        <span class="hero-stat-label">Pacientes atendidos</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">4.9★</span>
+        <span class="hero-stat-label">Nivel de satisfacción</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">24/7</span>
+        <span class="hero-stat-label">Agenda en línea</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tarjetita flotante con info dinámica -->
+  <div class="hero-floating-card d-none d-md-flex">
+    <div class="hero-floating-pill">
+      Próximo horario disponible:
+      <strong>{{ slots && slots.length ? slots[0] : '—' }}</strong>
+    </div>
+    <div class="hero-floating-pill soft">
+      Tu cita incluye recordatorio por correo 📩
+    </div>
+  </div>
 </section>
 
-<div *ngIf="loading" class="text-center">
+<div *ngIf="loading" class="text-center mt-4">
   <p>Cargando…</p>
 </div>
-<div class="alert alert-danger" *ngIf="!loading && err">
+
+<div class="alert alert-danger mt-3" *ngIf="!loading && err">
   {{ err }}
 </div>
-<div class="alert alert-success" *ngIf="!loading && msg">
+
+<div class="alert alert-success mt-3" *ngIf="!loading && msg">
   {{ msg }}
 </div>
 
 <section class="form mt-4" *ngIf="!loading">
   <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <label for="doctor">Doctor</label>
-        <select id="doctor" class="form-control" [(ngModel)]="model.doctor_id" (change)="refreshTaken()">
-          <option value="">— Selecciona —</option>
-          <option *ngFor="let d of doctors" [value]="d.id">{{ d.name }} — {{ d.specialty }}</option>
-        </select>
+
+    <!-- WIZARD DE PASOS -->
+    <div class="wizard mb-4">
+      <div
+        class="wizard-step"
+        [class.is-complete]="model.patient_name && model.service"
+        [class.is-active]="!(model.patient_name && model.service)"
+      >
+        <span class="wizard-step-index">1</span>
+        <div class="wizard-step-texts">
+          <span class="wizard-step-title">Datos del paciente</span>
+          <span class="wizard-step-caption">Nombre y motivo de la cita</span>
+        </div>
       </div>
 
-      <div class="col-md-6">
-        <label for="date">Fecha</label>
-        <input type="date" id="date" class="form-control" [(ngModel)]="model.date" (change)="refreshTaken()"/>
+      <div
+        class="wizard-step"
+        [class.is-complete]="model.doctor_id && model.date && model.start_time && !dateError"
+        [class.is-active]="
+          model.patient_name &&
+          model.service &&
+          !(model.doctor_id && model.date && model.start_time && !dateError)
+        "
+      >
+        <span class="wizard-step-index">2</span>
+        <div class="wizard-step-texts">
+          <span class="wizard-step-title">Doctor y horario</span>
+          <span class="wizard-step-caption">Elige especialista y horario</span>
+        </div>
+      </div>
+
+      <div
+        class="wizard-step"
+        [class.is-active]="
+          model.doctor_id &&
+          model.date &&
+          model.start_time &&
+          model.patient_name &&
+          model.service &&
+          !dateError
+        "
+      >
+        <span class="wizard-step-index">3</span>
+        <div class="wizard-step-texts">
+          <span class="wizard-step-title">Confirmación</span>
+          <span class="wizard-step-caption">Descarga tu PDF</span>
+        </div>
       </div>
     </div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <label for="service">Servicio</label>
-        <input type="text" id="service" class="form-control" placeholder="Ej. Limpieza, Blanqueamiento…" [(ngModel)]="model.service"/>
+    <!-- LAYOUT 2 COLUMNAS -->
+    <div class="appointment-layout">
+      <!-- COLUMNA PRINCIPAL: FORMULARIO -->
+      <div class="appointment-main">
+
+        <div class="row">
+          <div class="col-md-6">
+            <label for="doctor">Doctor</label>
+            <select
+              id="doctor"
+              class="form-control"
+              [(ngModel)]="model.doctor_id"
+              (change)="refreshTaken()"
+            >
+              <option value="">— Selecciona —</option>
+              <option *ngFor="let d of doctors" [value]="d.id">
+                {{ d.name }} — {{ d.specialty }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label for="date">Fecha</label>
+            <input
+              type="date"
+              id="date"
+              class="form-control"
+              [(ngModel)]="model.date"
+              [min]="today"
+              (change)="onDateChange()"
+            />
+            <!-- mensaje si la fecha es anterior a hoy -->
+            <small class="text-danger d-block mt-1" *ngIf="dateError">
+              No se puede agendar una cita en una fecha anterior a hoy.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-12">
+            <label for="service">Servicio</label>
+            <input
+              type="text"
+              id="service"
+              class="form-control"
+              placeholder="Ej. Limpieza, Blanqueamiento…"
+              [(ngModel)]="model.service"
+            />
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <label for="patient-name">Paciente</label>
+            <input
+              type="text"
+              id="patient-name"
+              class="form-control"
+              [(ngModel)]="model.patient_name"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label for="notes">Notas</label>
+            <input
+              type="text"
+              id="notes"
+              class="form-control"
+              [(ngModel)]="model.notes"
+              placeholder="Indicaciones especiales, alergias…"
+            />
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-12">
+            <label for="time">Horario</label>
+            <div class="slots">
+              <button
+                type="button"
+                class="btn btn-outline-secondary mr-2"
+                *ngFor="let s of slots"
+                [disabled]="slotDisabled(s)"
+                [class.btn-success]="model.start_time === s && !slotDisabled(s)"
+                [class.btn-danger]="slotDisabled(s) && model.doctor_id && model.date && !dateError"
+                (click)="pickSlot(s)"
+              >
+                {{ s }}
+              </button>
+            </div>
+            <small class="form-text text-muted" *ngIf="!model.doctor_id || !model.date">
+              Selecciona doctor y fecha para ver horarios disponibles.
+            </small>
+          </div>
+        </div>
+
+        <div class="actions text-center mt-4">
+          <button
+            type="button"
+            class="btn btn-primary btn-lg"
+            (click)="submit()"
+            [disabled]="
+              saving ||
+              !model.doctor_id ||
+              !model.date ||
+              !model.start_time ||
+              !model.patient_name ||
+              !model.service ||
+              dateError
+            "
+          >
+            {{ saving ? 'Guardando…' : 'Confirmar cita y descargar PDF' }}
+          </button>
+        </div>
       </div>
-    </div>
 
-    <div class="row mt-3">
-      <div class="col-md-6">
-        <label for="patient-name">Paciente</label>
-        <input type="text" id="patient-name" class="form-control" [(ngModel)]="model.patient_name"/>
-      </div>
+      <!-- COLUMNA LATERAL: RESUMEN + BENEFICIOS -->
+      <aside class="appointment-aside">
+        <div class="summary-card">
+          <h3>Resumen de tu cita</h3>
 
-      <div class="col-md-6">
-        <label for="notes">Notas</label>
-        <input type="text" id="notes" class="form-control" [(ngModel)]="model.notes"/>
-      </div>
-    </div>
+          <p
+            class="summary-placeholder"
+            *ngIf="!model.patient_name && !model.service && !model.doctor_id && !model.date && !model.start_time"
+          >
+            Completa el formulario y aquí verás el detalle de tu cita antes de
+            confirmar y descargar el PDF.
+          </p>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <label for="time">Horario</label>
-    <div class="slots">
-      <button type="button" class="btn btn-outline-secondary mr-2" *ngFor="let s of slots" 
-              [disabled]="slotDisabled(s)" 
-              [class.btn-success]="model.start_time === s" 
-              [class.btn-danger]="slotDisabled(s)"
-              (click)="pickSlot(s)">
-        {{ s }}
-      </button>
-    </div>
-    <small class="form-text text-muted" *ngIf="!model.doctor_id || !model.date">Selecciona doctor y fecha para ver horarios</small>
-  </div>
-</div>
+          <ul class="summary-list">
+            <li>
+              <span class="summary-label">Paciente</span>
+              <span class="summary-value">
+                {{ model.patient_name || '—' }}
+              </span>
+            </li>
+            <li>
+              <span class="summary-label">Servicio</span>
+              <span *ngIf="model.service; else noService" class="summary-pill">
+                {{ model.service }}
+              </span>
+              <ng-template #noService>
+                <span class="summary-value">—</span>
+              </ng-template>
+            </li>
+            <li>
+              <span class="summary-label">Doctor</span>
+              <span class="summary-value">
+                {{ getDoctorName(model.doctor_id) || '—' }}
+              </span>
+            </li>
+            <li>
+              <span class="summary-label">Fecha</span>
+              <span class="summary-value">
+                {{ model.date || '—' }}
+              </span>
+            </li>
+            <li>
+              <span class="summary-label">Horario</span>
+              <span class="summary-value">
+                {{ model.start_time || '—' }}
+              </span>
+            </li>
+          </ul>
 
+          <div class="summary-status" *ngIf="dateError">
+            <span class="summary-status-icon">⚠️</span>
+            <span class="summary-status-text">
+              Ajusta la fecha para poder confirmar la cita.
+            </span>
+          </div>
 
-    <div class="actions text-center mt-4">
-      <button type="button" class="btn btn-primary btn-lg" (click)="submit()" 
-              [disabled]="saving || !model.doctor_id || !model.date || !model.start_time || !model.patient_name || !model.service">
-        {{ saving ? 'Guardando…' : 'Confirmar cita y descargar PDF' }}
-      </button>
+          <div
+            class="summary-status success"
+            *ngIf="!dateError && model.doctor_id && model.date && model.start_time && model.patient_name && model.service"
+          >
+            <span class="summary-status-icon">✅</span>
+            <span class="summary-status-text">
+              Todo listo para confirmar y descargar tu PDF.
+            </span>
+          </div>
+        </div>
+
+        <div class="reassurance-card">
+          <h4>¿Qué incluye tu cita?</h4>
+          <ul>
+            <li>Historia clínica digital actualizada</li>
+            <li>Recordatorio automático por correo</li>
+            <li>Recomendaciones personalizadas de cuidado dental</li>
+          </ul>
+        </div>
+      </aside>
     </div>
   </div>
 </section>

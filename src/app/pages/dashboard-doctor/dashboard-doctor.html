@@ -1,24 +1,78 @@
-<section class="top">
-  <h2>Mis Citas</h2>
-  <button (click)="logout()">Cerrar sesión</button>
+<section class="doctor-hero">
+  <div class="container">
+    <p class="hero-pill">Panel del doctor</p>
+    <h1>Gestiona tus citas del día</h1>
+    <p class="hero-sub">
+      Revisa tus pacientes, horarios y marca las citas completadas.
+    </p>
+  </div>
 </section>
 
-<div *ngIf="loading">Cargando…</div>
-<p *ngIf="!loading && error" class="err">{{ error }}</p>
+<div class="container main" *ngIf="!loading">
+  <div class="alert alert-danger" *ngIf="error">
+    {{ error }}
+  </div>
 
-<table *ngIf="!loading && appts.length" class="tbl">
-  <thead>
-    <tr><th>Fecha</th><th>Hora</th><th>Paciente</th><th>Servicio</th><th>Notas</th></tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let a of appts">
-      <td>{{ a.date }}</td>
-      <td>{{ a.hour }}</td>
-      <td>{{ a.patient_name }}</td>
-      <td>{{ a.service }}</td>
-      <td>{{ a.notes || '—' }}</td>
-    </tr>
-  </tbody>
-</table>
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-card stat-blue">
+      <div class="stat-number">{{ totalHoy }}</div>
+      <div class="stat-label">Citas hoy</div>
+    </div>
+    <div class="stat-card stat-green">
+      <div class="stat-number">{{ pendientes }}</div>
+      <div class="stat-label">Pendientes</div>
+    </div>
+    <div class="stat-card stat-yellow">
+      <div class="stat-number">{{ completadas }}</div>
+      <div class="stat-label">Completadas</div>
+    </div>
+  </div>
 
-<p *ngIf="!loading && !appts.length">Sin citas registradas.</p>
+  <h2 class="list-title">Próximas citas</h2>
+  <p class="text-muted" *ngIf="citas.length === 0">
+    No tienes citas registradas.
+  </p>
+
+  <div class="cita-card" *ngFor="let c of citas">
+    <div class="cita-main">
+      <div class="cita-bar"></div>
+
+      <div class="cita-info">
+        <div class="cita-paciente">{{ c.patient_name }}</div>
+        <div class="cita-servicio">{{ c.service }}</div>
+        <div class="cita-fecha">
+          {{ c.date }} · {{ c.start_time }}
+        </div>
+      </div>
+
+      <div class="cita-status">
+        <span
+          class="badge badge-completada"
+          *ngIf="c.status === 'completada'"
+        >
+          Completada
+        </span>
+        <span
+          class="badge badge-pendiente"
+          *ngIf="c.status === 'pendiente'"
+        >
+          Pendiente
+        </span>
+      </div>
+    </div>
+
+    <button
+      class="btn-completar"
+      *ngIf="c.status === 'pendiente'"
+      (click)="marcarComoCompletada(c)"
+      [disabled]="esGuardando(c)"
+    >
+      {{ esGuardando(c) ? 'Guardando…' : 'Marcar como completada' }}
+    </button>
+  </div>
+</div>
+
+<div class="text-center" *ngIf="loading">
+  Cargando citas…
+</div>

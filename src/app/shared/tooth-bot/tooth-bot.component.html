@@ -1,0 +1,68 @@
+<div class="tooth-bot" [class.open]="open">
+  <!-- Panel de accesibilidad -->
+  <div class="tooth-bot__panel" *ngIf="open">
+    <h3>Dentibot</h3>
+    <p>Opciones de accesibilidad</p>
+
+    <!-- Tamaño de texto -->
+    <div class="tooth-bot__group">
+      <h4>Tamaño de texto</h4>
+      <div class="tooth-bot__chips">
+        <button type="button" (click)="setFontSize('small')">A-</button>
+        <button type="button" (click)="setFontSize('normal')">A</button>
+        <button type="button" (click)="setFontSize('big')">A+</button>
+      </div>
+    </div>
+
+    <!-- Colores / contraste -->
+    <div class="tooth-bot__group">
+      <h4>Visibilidad</h4>
+      <div class="tooth-bot__chips">
+        <button type="button" (click)="toggleContrast()">
+          Alto contraste
+        </button>
+        <button type="button" (click)="toggleHighlightLinks()">
+          Resaltar enlaces
+        </button>
+      </div>
+    </div>
+
+    <!-- Movimiento / scroll -->
+    <div class="tooth-bot__group">
+      <h4>Movimiento</h4>
+      <div class="tooth-bot__chips">
+        <button type="button" (click)="toggleReduceMotion()">
+          Reducir animaciones
+        </button>
+        <button type="button" (click)="scrollTop()">
+          Ir arriba
+        </button>
+      </div>
+    </div>
+
+    <!-- Reset -->
+    <div class="tooth-bot__group tooth-bot__group--footer">
+      <button type="button" class="btn-reset" (click)="resetAll()">
+        Restablecer todo
+      </button>
+    </div>
+  </div>
+
+  <!-- Botón flotante con el diente-robot -->
+  <button
+    type="button"
+    class="tooth-bot__button"
+    (click)="toggle()"
+    [attr.aria-expanded]="open"
+    aria-label="Asistente de accesibilidad DentalClinic"
+  >
+    <div class="tooth-bot__icon">
+      <div class="tooth-face">
+        <span class="tooth-eye left"></span>
+        <span class="tooth-eye right"></span>
+        <span class="tooth-mouth"></span>
+      </div>
+    </div>
+    <span class="tooth-bot__hint" *ngIf="!open">Accesibilidad</span>
+  </button>
+</div>

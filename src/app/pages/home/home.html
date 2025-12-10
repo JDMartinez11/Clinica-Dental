@@ -1,41 +1,100 @@
 <!-- Sección Bienvenida -->
 <section id="bienvenida" class="container my-5 text-center">
-  <h2 class="text-primary mb-4 display-4">Bienvenido a Mi Clínica Dental</h2>
-  <p class="lead mb-4">En Mi Clínica Dental, nos dedicamos a brindarte la mejor atención dental, con tecnología avanzada y un equipo de profesionales comprometidos con tu salud bucal. ¡Tu sonrisa es nuestra prioridad!</p>
-  <a href="/#servicios" class="btn btn-primary btn-lg">Descubre Nuestros Servicios</a>
+  <h2 class="text-primary mb-4 display-4">
+    Bienvenido a <span class="clinic-name">Mi Clínica Dental</span>
+  </h2>
+
+  <!-- Frase que va cambiando sola -->
+  <p class="hero-rotating">
+    <span>Sonrisas más blancas, todos los días.</span>
+    <span>Tratamientos sin dolor y con confianza.</span>
+    <span>Agenda en línea, sin complicaciones.</span>
+  </p>
+
+  <p class="lead mb-4">
+    En Mi Clínica Dental, nos dedicamos a brindarte la mejor atención dental con tecnología avanzada
+    y un equipo de profesionales comprometidos con tu salud bucal. Te acompañamos desde la prevención
+    hasta tratamientos especializados para que sonrías con seguridad en cada etapa de tu vida.
+  </p>
+
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-4 col-sm-6 mb-3">
+      <div class="card-elevated">
+        <h5 class="mb-1">Enfoque integral</h5>
+        <p class="mb-0 small">
+          Implantes, ortodoncia, estética y prevención en un mismo lugar.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-6 mb-3">
+      <div class="card-elevated">
+        <h5 class="mb-1">Tecnología digital</h5>
+        <p class="mb-0 small">
+          Radiografías digitales y planificación 3D para diagnósticos más precisos.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-6 mb-3">
+      <div class="card-elevated">
+        <h5 class="mb-1">Pensado para la familia</h5>
+        <p class="mb-0 small">
+          Atención para niños, jóvenes y adultos, con un ambiente cómodo y cercano.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <a href="/#servicios" class="btn btn-primary btn-lg">
+    Descubre Nuestros Servicios
+  </a>
 </section>
+
 
 <!-- Sección de Servicios Destacados -->
 <section id="servicios-destacados" class="container my-5 text-center">
   <h2 class="text-primary mb-4">Servicios Destacados</h2>
-  <p class="lead mb-4">Conoce algunos de nuestros servicios más populares que pueden ayudarte a mejorar tu salud bucal.</p>
+  <p class="lead mb-4">
+    Conoce algunos de nuestros servicios más solicitados. Todos nuestros tratamientos se adaptan a
+    tus necesidades, tras una valoración personalizada con nuestros especialistas.
+  </p>
   <div class="row justify-content-center">
     <article class="col-md-4 col-sm-6 mb-4">
       <div class="card shadow-lg border-0 hover-shadow">
         <div class="card-body">
           <i class="fas fa-tooth fa-5x text-primary mt-4"></i>
           <h5 class="card-title mt-3">Implantes Dentales</h5>
-          <p class="card-text">Ofrecemos implantes de alta calidad para restaurar tu sonrisa. Un tratamiento seguro y duradero.</p>
+          <p class="card-text">
+            Reemplaza piezas ausentes con implantes de alta calidad que se integran al hueso
+            y ofrecen una sensación muy similar a un diente natural.
+          </p>
           <a href="/#servicios" class="btn btn-primary w-100">Más Información</a>
         </div>
       </div>
     </article>
+
     <article class="col-md-4 col-sm-6 mb-4">
       <div class="card shadow-lg border-0 hover-shadow">
         <div class="card-body">
-          <i class="fas fa-braces fa-5x text-primary mt-4"></i>
+          <i class="fas fa-teeth-open fa-5x text-primary mt-4"></i>
           <h5 class="card-title mt-3">Ortodoncia</h5>
-          <p class="card-text">Soluciones de ortodoncia para alinear tus dientes y mejorar tu sonrisa.</p>
+          <p class="card-text">
+            Brackets y alineadores transparentes para alinear tus dientes, mejorar tu mordida
+            y facilitar la higiene diaria.
+          </p>
           <a href="/#servicios" class="btn btn-primary w-100">Más Información</a>
         </div>
       </div>
     </article>
+
     <article class="col-md-4 col-sm-6 mb-4">
       <div class="card shadow-lg border-0 hover-shadow">
         <div class="card-body">
           <i class="fas fa-teeth fa-5x text-primary mt-4"></i>
           <h5 class="card-title mt-3">Blanqueamiento Dental</h5>
-          <p class="card-text">Recupera el brillo natural de tus dientes con nuestro tratamiento de blanqueamiento dental.</p>
+          <p class="card-text">
+            Tratamientos de blanqueamiento supervisados por el odontólogo para aclarar varios tonos
+            el color de tus dientes de forma segura.
+          </p>
           <a href="/#servicios" class="btn btn-primary w-100">Más Información</a>
         </div>
       </div>
@@ -43,34 +102,262 @@
   </div>
 </section>
 
+
+<!-- Galería de sonrisas / resultados -->
+<section id="galeria-sonrisas" class="container my-5">
+  <h2 class="text-primary mb-3 text-center">Galería de Sonrisas</h2>
+  <p class="lead text-center mb-4">
+    Algunos ejemplos de tratamientos realizados: blanqueamientos, ortodoncia y rehabilitaciones integrales.
+  </p>
+
+  <div class="row g-3 gallery-grid">
+    <div class="col-sm-6 col-md-4">
+      <div class="gallery-card">
+        <img src="assets/images/2.jpeg" alt="Resultado de blanqueamiento dental" loading="lazy" />
+        <div class="gallery-card__label">Blanqueamiento</div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <div class="gallery-card">
+        <img src="assets/images/3.jpeg" alt="Resultado de tratamiento de ortodoncia" loading="lazy" />
+        <div class="gallery-card__label">Ortodoncia</div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <div class="gallery-card">
+        <img src="assets/images/7.jpeg" alt="Implantes dentales finalizados" loading="lazy" />
+        <div class="gallery-card__label">Implantes</div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <div class="gallery-card">
+        <img src="assets/images/4.jpeg" alt="Paciente después de rehabilitación estética" loading="lazy" />
+        <div class="gallery-card__label">Estética</div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <div class="gallery-card">
+        <img src="assets/images/5.jpeg" alt="Sonrisa posterior a limpieza profesional" loading="lazy" />
+        <div class="gallery-card__label">Limpieza</div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <div class="gallery-card">
+        <img src="assets/images/6.jpeg" alt="Caso combinado de ortodoncia y estética" loading="lazy" />
+        <div class="gallery-card__label">Tratamiento integral</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Sección educativa: Hábitos de salud bucal -->
+<section id="cuidado-bucal" class="container my-5">
+  <div class="row align-items-center">
+    <div class="col-md-6 mb-4 mb-md-0">
+      <h2 class="text-primary mb-3">Cuida tu salud bucal todos los días</h2>
+      <p class="lead">
+        Los buenos hábitos en casa son tan importantes como las visitas a la clínica. Una rutina sencilla
+        puede marcar la diferencia en la prevención de caries y enfermedades de las encías.
+      </p>
+      <ul class="list-unstyled text-start mt-3">
+        <li class="mb-2">
+          <i class="fas fa-check-circle text-primary me-2"></i>
+          Cepíllate los dientes <strong>dos veces al día</strong> durante unos
+          <strong>2 minutos</strong> con pasta dental con flúor. 
+        </li>
+        <li class="mb-2">
+          <i class="fas fa-check-circle text-primary me-2"></i>
+          Usa <strong>hilo dental o limpiadores interdentales una vez al día</strong> para limpiar
+          las zonas donde el cepillo no llega.
+        </li>
+        <li class="mb-2">
+          <i class="fas fa-check-circle text-primary me-2"></i>
+          Limita el consumo frecuente de bebidas azucaradas y snacks dulces entre comidas.
+        </li>
+        <li class="mb-2">
+          <i class="fas fa-check-circle text-primary me-2"></i>
+          Visita a tu dentista de forma regular para revisiones y limpiezas profesionales, con una
+          frecuencia adaptada a tu nivel de riesgo.
+        </li>
+      </ul>
+      <p class="small text-muted mt-2">
+        Estas recomendaciones se basan en guías de asociaciones dentales y servicios de salud
+        que promueven el cepillado con pasta fluorada, la limpieza interdental diaria y
+        las revisiones periódicas.
+      </p>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-lg border-0 card-elevated">
+        <h5 class="mb-2">Rutina ideal de cuidado diario</h5>
+        <ol class="text-start mb-3">
+          <li class="mb-1">Cepillado por la mañana (2 minutos).</li>
+          <li class="mb-1">Limpieza entre dientes con hilo o cepillos interdentales.</li>
+          <li class="mb-1">Evitar picar snacks azucarados de forma continua durante el día.</li>
+          <li class="mb-1">Cepillado antes de dormir (2 minutos) con pasta fluorada.</li>
+        </ol>
+        <p class="small mb-0">
+          Si tienes dudas sobre qué productos usar (tipo de cepillo, concentración de flúor,
+          enjuagues, etc.), nuestro equipo puede orientarte en tu próxima visita.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Carrusel visual de la clínica -->
+<section id="carrusel-clinica" class="container my-5">
+  <h2 class="text-primary mb-3 text-center">Conoce Nuestra Clínica</h2>
+  <p class="lead text-center mb-4">
+    Un espacio diseñado para que te sientas cómodo desde que llegas: consultorios modernos,
+    áreas limpias y un ambiente tranquilo para toda la familia.
+  </p>
+
+  <div class="clinic-carousel">
+    <div class="clinic-carousel__slide">
+      <img src="assets/images/11.jpeg" alt="Consultorio dental moderno" loading="lazy" />
+    </div>
+    <div class="clinic-carousel__slide">
+      <img src="assets/images/9.jpeg" alt="Sala de espera de la clínica" loading="lazy" />
+    </div>
+    <div class="clinic-carousel__slide">
+      <img src="assets/images/12.jpeg" alt="Equipo dental trabajando" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+
 <!-- Sección de Llamada a la Acción (CTA) -->
 <section id="cta" class="container my-5 text-center">
-  <h2 class="text-primary mb-4">Agenda Tu Cita Hoy</h2>
-  <p class="lead mb-4">No esperes más para cuidar tu salud bucal. Agenda tu cita con nosotros ahora mismo y recibe un diagnóstico personalizado.</p>
-  <a href="/#contacto" class="btn btn-primary btn-lg">Agendar Cita</a>
+  <h2>Agenda Tu Cita Hoy</h2>
+  <p class="lead mb-4">
+    No esperes a que aparezca dolor o molestia. Una revisión periódica permite detectar problemas
+    a tiempo y mantener tus dientes sanos durante más años. Agenda tu cita ahora y recibe un
+    diagnóstico personalizado.
+  </p>
+  <a href="/#citas" class="btn btn-primary btn-lg">Agendar Cita</a>
 </section>
+
+
+<!-- Sección de Preguntas Frecuentes -->
+<section id="faq-odontologia" class="container my-5">
+  <h2 class="text-primary mb-4 text-center">Preguntas frecuentes</h2>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <details class="card-elevated">
+        <summary><strong>¿Cada cuánto debo cepillarme los dientes?</strong></summary>
+        <p class="mt-2 mb-0">
+          La mayoría de asociaciones dentales recomiendan cepillarse
+          <strong>dos veces al día</strong> durante unos <strong>2 minutos</strong> con
+          pasta dental con flúor. Esto ayuda a eliminar la placa y reducir el riesgo de caries
+          y problemas de encías.
+        </p>
+      </details>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <details class="card-elevated">
+        <summary><strong>¿Es realmente necesario usar hilo dental?</strong></summary>
+        <p class="mt-2 mb-0">
+          Sí. El cepillo no llega bien a los espacios entre dientes, donde se acumulan restos
+          de comida y placa. Se recomienda usar <strong>hilo dental o limpiadores
+          interdentales una vez al día</strong> para prevenir caries entre dientes y
+          enfermedad de las encías.
+        </p>
+      </details>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <details class="card-elevated">
+        <summary><strong>¿Cada cuánto debo ir al dentista?</strong></summary>
+        <p class="mt-2 mb-0">
+          Como regla general, muchas personas acuden al dentista
+          <strong>una o dos veces al año</strong>. Sin embargo, el intervalo ideal puede ir
+          de unos meses hasta casi dos años, según tu riesgo de caries, encías y otros
+          factores. Tu dentista te indicará la frecuencia adecuada en tu caso.
+        </p>
+      </details>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <details class="card-elevated">
+        <summary><strong>¿Por qué es importante el flúor?</strong></summary>
+        <p class="mt-2 mb-0">
+          El flúor ayuda a <strong>fortalecer el esmalte</strong>, haciéndolo más resistente
+          a los ataques de los ácidos que producen las bacterias. El uso regular de pasta
+          dental con flúor se ha asociado con una menor aparición de caries en niños y
+          adultos.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
 
 <!-- Sección de Testimonios -->
 <section id="testimonios" class="container my-5 text-center">
   <h2 class="text-primary mb-4">Testimonios de Nuestros Pacientes</h2>
-  <p class="lead mb-4">Escucha lo que nuestros pacientes dicen sobre su experiencia con Mi Clínica Dental.</p>
+  <p class="lead mb-4">
+    Nada nos hace más felices que ver a nuestros pacientes sonreír con confianza después de
+    su tratamiento.
+  </p>
+
   <div class="row">
     <div class="col-md-6 col-sm-12 mb-4">
       <div class="card shadow-lg border-0">
         <div class="card-body">
-          <blockquote class="blockquote">
-            <p class="mb-0">"Excelente atención, el equipo de Mi Clínica Dental me hizo sentir cómodo en todo momento. ¡Mi sonrisa nunca había estado mejor!"</p>
-            <footer class="blockquote-footer">Juan Pérez</footer>
+          <div class="testimonial-header">
+            <img
+              src="assets/images/doc3H.jpeg"
+              alt="Paciente Juan Pérez"
+              class="testimonial-avatar"
+              loading="lazy"
+            />
+            <div>
+              <strong>Juan Pérez</strong>
+              <div class="testimonial-tag">Tratamiento de implantes</div>
+            </div>
+          </div>
+
+          <blockquote class="blockquote mt-2">
+            <p class="mb-0">
+              "Excelente atención, el equipo de Mi Clínica Dental me hizo sentir cómodo en todo
+              momento. Me explicaron cada paso del tratamiento y ahora sonrío sin miedo a las fotos."
+            </p>
           </blockquote>
         </div>
       </div>
     </div>
+
     <div class="col-md-6 col-sm-12 mb-4">
       <div class="card shadow-lg border-0">
         <div class="card-body">
-          <blockquote class="blockquote">
-            <p class="mb-0">"¡Un servicio increíble! Me hicieron un tratamiento de ortodoncia y los resultados fueron fantásticos. Totalmente recomendados."</p>
-            <footer class="blockquote-footer">Ana Gómez</footer>
+          <div class="testimonial-header">
+            <img
+              src="assets/images/doc1M.jpeg"
+              alt="Paciente Ana Gómez"
+              class="testimonial-avatar"
+              loading="lazy"
+            />
+            <div>
+              <strong>Ana Gómez</strong>
+              <div class="testimonial-tag">Ortodoncia</div>
+            </div>
+          </div>
+
+          <blockquote class="blockquote mt-2">
+            <p class="mb-0">
+              "Llegué con mucha inseguridad por la posición de mis dientes. Gracias al tratamiento de
+              ortodoncia y al seguimiento cercano del equipo, los resultados superaron mis expectativas."
+            </p>
           </blockquote>
         </div>
       </div>
@@ -78,9 +365,20 @@
   </div>
 </section>
 
+
 <!-- Sección de Contacto -->
 <section id="contacto" class="container my-5 text-center">
   <h2 class="text-primary mb-4">Contacto</h2>
-  <p class="lead mb-4">¿Tienes preguntas? ¿Quieres más información? ¡No dudes en ponerte en contacto con nosotros!</p>
-  <a href="mailto:clinica@dental.com" class="btn btn-primary btn-lg">Contáctanos</a>
+  <p class="lead mb-4">
+    ¿Tienes preguntas sobre algún tratamiento, costos o formas de pago?
+    Escríbenos y con gusto te orientamos antes de tu visita.
+  </p>
+  <p class="mb-2">
+    También podemos ayudarte a planificar tus revisiones periódicas para mantener tu salud bucal
+    siempre al día.
+  </p>
+
+  <p class="small text-muted mt-3 mb-0">
+    Horario de atención: Lunes a Viernes de 9:00 a 19:00 h · Sábados de 9:00 a 14:00 h
+  </p>
 </section>

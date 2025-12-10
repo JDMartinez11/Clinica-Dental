@@ -1,19 +1,69 @@
-// Importar fuentes externas
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap');
+@use '@angular/material' as mat;
 
-// Establecer los colores personalizados
-$blue-main: #2563EB;
-$blue-light: #3B82F6;
-$white: #FFFFFF;
-$green-sec: #10B981;
+// ================== TEMA ANGULAR MATERIAL ==================
 
-// Aplicar la paleta de colores y tipografía
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: $white;
+html {
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+
+  // Scroll suave en toda la app
+  scroll-behavior: smooth;
 }
 
-h1, h2, h3, h4, h5, h6 {
+// ================== FUENTES & VARIABLES ==================
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap');
+
+// 🎨 Paleta pastel
+$blue-main: #60A5FA;    // azul pastel
+$blue-light: #A5B4FC;   // lila pastel
+$white: #FFFFFF;
+$green-sec: #6EE7B7;    // verde menta pastel
+
+$gray-soft: #E5E7EB;
+$text-main: #111827;
+$text-muted: #6B7280;
+
+// Variables CSS por si luego quieres jugar con JS
+:root {
+  --app-primary: #{$blue-main};
+  --app-primary-light: #{$blue-light};
+  --app-accent-green: #{$green-sec};
+  --app-accent-cyan: #7dd3fc;
+  --app-accent-purple: #c4b5fd;
+  --app-accent-pink: #f9a8d4;
+}
+
+// ================== BASE GLOBAL ==================
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  color-scheme: light;
+  // 🌈 Fondo pastel global (sin tonos muy oscuros)
+  background: radial-gradient(circle at top, #eff6ff, #fdf2ff 50%, #ecfeff 100%);
+  color: $text-main;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-attachment: fixed;
+  animation: bodyBgShift 32s ease-in-out infinite alternate;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Bebas Neue', sans-serif;
   color: $blue-main;
 }
@@ -32,10 +82,339 @@ button:hover {
 
 a {
   color: $blue-main;
+  text-decoration: none;
 }
 
 a:hover {
   color: $green-sec;
 }
 
-// Personalizar otros elementos como los botones o los iconos si es necesario
+/* Botones globales con efecto de presión */
+button,
+.btn,
+.btn-primary,
+.btn-secondary {
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+button:active,
+.btn:active,
+.btn-primary:active,
+.btn-secondary:active {
+  transform: scale(0.97);
+  box-shadow: 0 8px 18px rgba(148, 163, 184, 0.45);
+}
+
+/* Card genérica reutilizable */
+.card-elevated {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 18px 20px;
+  box-shadow: 0 10px 24px rgba(148, 163, 184, 0.32);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border 0.15s ease;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.card-elevated:hover {
+  transform: translateY(-3px);
+  border-color: rgba($blue-main, 0.35);
+  box-shadow: 0 16px 32px rgba(148, 163, 184, 0.48);
+}
+
+// ================== FONDO ANIMADO GLOBAL ==================
+
+// Animación de movimiento suave de blobs
+@keyframes bgFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-20px, 10px, 0) scale(1.05);
+  }
+  100% {
+    transform: translate3d(10px, -10px, 0) scale(1.02);
+  }
+}
+
+@keyframes bgFloat2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(20px, -15px, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(-10px, 5px, 0) scale(1.03);
+  }
+}
+
+// 🌈 Cambio de fondo pastel global muy suave
+@keyframes bodyBgShift {
+  0% {
+    background: radial-gradient(circle at top, #eff6ff, #fdf2ff 50%, #ecfeff 100%);
+  }
+  33% {
+    background: radial-gradient(circle at top, #e0f2fe, #fae8ff 50%, #dcfce7 100%);
+  }
+  66% {
+    background: radial-gradient(circle at top, #fef9c3, #ffe4e6 50%, #e0f2fe 100%);
+  }
+  100% {
+    background: radial-gradient(circle at top, #e0f2fe, #ddd6fe 50%, #fce7f3 100%);
+  }
+}
+
+// Ligero cambio de tono en blobs
+@keyframes bgHueShift {
+  0% {
+    filter: hue-rotate(0deg) saturate(1);
+  }
+  50% {
+    filter: hue-rotate(18deg) saturate(1.05);
+  }
+  100% {
+    filter: hue-rotate(-18deg) saturate(1.05);
+  }
+}
+
+.app-root {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate; // las capas de fondo quedan atrás
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: -40vh -20vw auto -20vw; // parte superior
+    background:
+      radial-gradient(circle at top left, rgba(96, 165, 250, 0.35), transparent 60%),
+      radial-gradient(circle at top right, rgba(165, 180, 252, 0.32), transparent 55%);
+    z-index: -1;
+    filter: blur(4px);
+    animation:
+      bgFloat 24s ease-in-out infinite alternate,
+      bgHueShift 40s linear infinite alternate;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: fixed;
+    inset: auto -30vw -40vh -30vw; // parte inferior
+    background:
+      radial-gradient(circle at bottom, rgba(110, 231, 183, 0.3), transparent 60%);
+    z-index: -1;
+    filter: blur(5px);
+    animation:
+      bgFloat2 32s ease-in-out infinite alternate,
+      bgHueShift 50s linear infinite alternate;
+    pointer-events: none;
+  }
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px 40px;
+}
+
+.app-content {
+  width: 100%;
+  max-width: 1800px;
+}
+
+// ================== HEADER / NAVBAR ==================
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid rgba(209, 213, 219, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: $blue-main;
+}
+
+.logo-icon {
+  font-size: 24px;
+}
+
+.logo-text {
+  font-size: 1.1rem;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  font-size: 0.95rem;
+}
+
+.main-nav a {
+  position: relative;
+  text-decoration: none;
+  color: #6b7280; // gris medio
+  font-weight: 500;
+  padding: 4px 0;
+  transition: color 0.2s ease;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, $blue-main, $blue-light);
+  transition: width 0.25s ease;
+}
+
+.main-nav a:hover {
+  color: $blue-main;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+.main-nav a.active {
+  color: $blue-main;
+}
+
+.main-nav a.active::after {
+  width: 100%;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.session-btn {
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background: transparent;
+  color: $blue-main;
+  border: 1px solid rgba($blue-main, 0.5);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.session-btn:hover {
+  background: $blue-main;
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(96, 165, 250, 0.45);
+  transform: translateY(-1px);
+}
+
+// ================== BANDA AZUL FULL-WIDTH (HERO LIGERO) ==================
+
+.full-width-band {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  padding: 48px 0 64px;
+  background: linear-gradient(
+    120deg,
+    #e0f2fe,
+    $blue-main 40%,
+    $blue-light 70%,
+    #bfdbfe 100%
+  );
+  color: #0f172a;
+  overflow: hidden;
+}
+
+.full-width-band::before {
+  content: '';
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.8), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(191, 219, 254, 0.8), transparent 60%);
+  mix-blend-mode: screen;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.full-width-band__content {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+// ================== ACCESIBILIDAD GLOBAL ACTIVADA POR DENTIBOT ==================
+
+/* Tamaños de fuente */
+body.font-small {
+  font-size: 0.95rem;
+}
+
+body.font-normal {
+  font-size: 1rem;
+}
+
+body.font-big {
+  font-size: 1.08rem;
+}
+
+/* Alto contraste (lo dejamos oscuro a propósito por accesibilidad) */
+body.high-contrast {
+  background-color: #020617;
+  color: #f9fafb;
+}
+
+body.high-contrast .card,
+body.high-contrast section,
+body.high-contrast .app-main {
+  background-color: transparent;
+  color: #e5e7eb;
+}
+
+body.high-contrast a {
+  color: #38bdf8;
+  text-decoration: underline;
+}
+
+body.high-contrast a:hover {
+  color: #22d3ee;
+}
+
+/* Reducir animaciones */
+body.reduced-motion,
+body.reduced-motion * {
+  scroll-behavior: auto !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Resaltar enlaces */
+body.highlight-links a {
+  position: relative;
+  background: rgba(250, 204, 21, 0.18);
+  box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.6);
+  border-radius: 4px;
+}

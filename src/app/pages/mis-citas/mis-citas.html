@@ -1,0 +1,64 @@
+<section class="paciente-hero">
+  <div class="container">
+    <p class="hero-pill">Mis citas</p>
+    <h1>Tus próximas visitas al consultorio</h1>
+    <p class="hero-sub">
+      Consulta el estado de tus citas, horarios y servicios agendados.
+    </p>
+  </div>
+</section>
+
+<div class="container main" *ngIf="!loading">
+  <div class="alert alert-danger" *ngIf="error">
+    {{ error }}
+  </div>
+
+  <div class="stats">
+    <div class="stat-card stat-blue">
+      <div class="stat-number">{{ total }}</div>
+      <div class="stat-label">Total de citas</div>
+    </div>
+    <div class="stat-card stat-green">
+      <div class="stat-number">{{ pendientes }}</div>
+      <div class="stat-label">Pendientes</div>
+    </div>
+    <div class="stat-card stat-yellow">
+      <div class="stat-number">{{ completadas }}</div>
+      <div class="stat-label">Completadas</div>
+    </div>
+  </div>
+
+  <h2 class="list-title">Historial de citas</h2>
+  <p class="text-muted" *ngIf="citas.length === 0">
+    Aún no tienes citas registradas.
+  </p>
+
+  <div class="cita-card" *ngFor="let c of citas">
+    <div class="cita-main">
+      <div class="cita-bar"></div>
+
+      <div class="cita-info">
+        <div class="cita-servicio">{{ c.service }}</div>
+        <div class="cita-fecha">
+          {{ c.date }} · {{ c.start_time }}
+        </div>
+        <div class="cita-paciente">
+          Paciente: {{ c.patient_name }}
+        </div>
+      </div>
+
+      <div class="cita-status">
+        <span class="badge badge-completada" *ngIf="c.status === 'completada'">
+          Completada
+        </span>
+        <span class="badge badge-pendiente" *ngIf="c.status === 'pendiente'">
+          Pendiente
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center" *ngIf="loading">
+  Cargando tus citas…
+</div>

@@ -1,86 +1,554 @@
-// Colores personalizados
-$blue-main: #2563EB;
-$blue-light: #3B82F6;
-$green-sec: #10B981;
-$yellow-warning: #F59E0B;
+// 🎨 Paleta de marca odontológica
+$blue-main: #2563EB;   // Azul principal – confianza
+$blue-light: #3B82F6;  // Azul claro – tecnología
+$green-sec: #10B981;   // Verde – salud y bienestar
 $white: #FFFFFF;
-$gray-light: #f8f9fa;
 
-// Estilos generales
+// Tonos suaves derivados (pastel)
+$blue-soft: #EFF6FF;   // azul muy suave
+$blue-soft-2: #DBEAFE; // azul suave intermedio
+$green-soft: #DCFCE7;  // verde menta suave
+$text-main: #0F172A;
+$text-muted: #6B7280;
+$yellow-soft: #FEF9C3;
+$yellow-strong: #FACC15;
+
+// ========== BASE ==========
+
 body {
   font-family: 'Inter', sans-serif;
-  background-color: $gray-light;
+  background-color: $blue-soft;
+  color: $text-main;
 }
 
 h1 {
   font-family: 'Bebas Neue', sans-serif;
 }
 
+// ========== HERO ==========
+
 .hero {
-  background-color: $blue-main;
-  color: $white;
-  padding: 50px 0;
+  position: relative;
+  padding: 48px 0 70px;
+  color: $text-main;
+  overflow: hidden;
+
+  background: linear-gradient(
+    135deg,
+    $blue-soft 0%,
+    $white 45%,
+    $green-soft 100%
+  );
+  animation: heroBgShift 26s ease-in-out infinite alternate;
+  box-shadow: 0 18px 40px rgba(148, 163, 184, 0.32);
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    background:
+      radial-gradient(circle at top left, rgba($blue-soft-2, 0.86), transparent 60%),
+      radial-gradient(circle at top right, rgba($white, 0.95), transparent 60%);
+    opacity: 0.95;
+    filter: blur(10px);
+    pointer-events: none;
+  }
+
+  h1 {
+    font-size: 2.6rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 18px;
+    background: linear-gradient(120deg, $blue-main, $blue-light);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .hero-subtitle {
+    text-align: center;
+    max-width: 540px;
+    margin: 0 auto 28px;
+    color: $text-muted;
+    font-size: 0.98rem;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba($blue-soft-2, 0.9);
+    border: 1px solid rgba($blue-main, 0.2);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .hero-stat {
+    padding: 10px 12px;
+    border-radius: 16px;
+    background: rgba($white, 0.9);
+    border: 1px solid rgba($blue-soft-2, 0.9);
+    box-shadow: 0 10px 22px rgba(148, 163, 184, 0.35);
+  }
+
+  .hero-stat-number {
+    display: block;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: $blue-main;
+  }
+
+  .hero-stat-label {
+    display: block;
+    font-size: 0.85rem;
+    color: $text-muted;
+  }
+
+  /* 👇 Aquí el cambio importante */
+  .hero-floating-card {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;  // ANTES estaba en -26px
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba($white, 0.96);
+    border: 1px solid rgba($blue-soft-2, 0.95);
+    box-shadow: 0 18px 36px rgba(15, 23, 42, 0.35);
+    backdrop-filter: blur(18px);
+    z-index: 2;
+  }
+
+  .hero-floating-pill {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+
+    &.soft {
+      background: rgba($green-soft, 0.9);
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding-bottom: 48px;
+
+    .hero-stats {
+      grid-template-columns: 1fr;
+    }
+  }
 }
 
-.hero h1 {
-  font-size: 3rem;
-  font-weight: bold;
+
+// Animación suave del fondo del hero
+@keyframes heroBgShift {
+  0% {
+    background: linear-gradient(135deg, $blue-soft 0%, $white 45%, $green-soft 100%);
+  }
+  50% {
+    background: linear-gradient(135deg, $blue-soft-2 0%, $white 45%, $blue-soft 100%);
+  }
+  100% {
+    background: linear-gradient(135deg, $blue-soft 0%, $white 45%, $green-soft 100%);
+  }
 }
+
+// ========== FORMULARIO CONTENEDOR ==========
+
+.form {
+  max-width: 980px;
+  margin: 0 auto;
+  background: rgba($white, 0.98);
+  border-radius: 24px;
+  padding: 28px 28px 22px;
+  box-shadow:
+    0 14px 30px rgba(148, 163, 184, 0.4),
+    0 0 0 1px rgba($white, 0.9);
+  border: 1px solid rgba($blue-soft-2, 0.9);
+  backdrop-filter: blur(16px);
+  /* 👇 importante: sin transform */
+  // transform: translateY(-16px);
+   margin-top: 4rem !important;
+}
+
 
 .form label {
-  font-weight: bold;
+  font-weight: 600;
   color: $blue-main;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
 }
 
 .form-control {
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 12px;
+  padding: 10px 12px;
   font-size: 1rem;
+  border: 1px solid rgba($blue-soft-2, 0.9);
+  background-color: $white;
+  transition: border 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $blue-main;
+    box-shadow: 0 0 0 3px rgba($blue-main, 0.25);
+    background-color: $blue-soft;
+  }
+}
+
+.small {
+  color: $text-muted;
+  font-size: 0.85rem;
+}
+
+// ========== BOTONES GENERALES ==========
+
+button {
+  font-family: 'Inter', sans-serif;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    filter 0.16s ease,
+    background 0.18s ease;
 }
 
 button:disabled {
   opacity: 0.6;
+  cursor: not-allowed;
 }
 
-button:hover {
-background-color: #2563EB; // Color azul simple, por ejemplo.
-
+// Hover general suave
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(148, 163, 184, 0.45);
 }
 
-.small {
-  color: #6c757d;
+// ========== LAYOUT DOS COLUMNAS ==========
+
+.appointment-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(260px, 1.4fr);
+  gap: 26px;
+  align-items: flex-start;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+  }
 }
 
-// Estilo de los botones de horarios
+.appointment-aside {
+  position: relative;
+}
+
+// ========== WIZARD DE PASOS ==========
+
+.wizard {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 26px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wizard-step {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba($blue-soft-2, 0.95), rgba($white, 0.98));
+  border: 1px solid rgba($blue-soft-2, 0.9);
+  box-shadow: 0 10px 22px rgba(148, 163, 184, 0.35);
+  overflow: hidden;
+}
+
+.wizard-step-index {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, $blue-main, $blue-light);
+  color: $white;
+  flex-shrink: 0;
+}
+
+.wizard-step-texts {
+  text-align: left;
+}
+
+.wizard-step-title {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $text-main;
+}
+
+.wizard-step-caption {
+  display: block;
+  font-size: 0.78rem;
+  color: $text-muted;
+}
+
+.wizard-step.is-active {
+  border-color: $blue-main;
+  box-shadow: 0 12px 26px rgba($blue-main, 0.45);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba($green-soft, 0.7), transparent 60%);
+    opacity: 0.9;
+    pointer-events: none;
+  }
+}
+
+.wizard-step.is-complete {
+  .wizard-step-index {
+    background: linear-gradient(135deg, $green-sec, lighten($green-sec, 8%));
+  }
+}
+
+// ========== BOTONES DE HORARIOS ==========
+
+.slots {
+  margin-top: 18px;
+}
+
 .slots button {
-  width: 100px;
+  min-width: 100px;
   margin-right: 10px;
   margin-bottom: 10px;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba($blue-soft-2, 0.9);
+  background-color: $white;
+  color: $text-main;
 }
 
+// Disponible -> verde de marca
 .slots .btn-success {
-  background-color: $green-sec;
+  background: linear-gradient(135deg, $green-sec, lighten($green-sec, 8%));
   color: $white;
+  box-shadow: 0 10px 22px rgba($green-sec, 0.45);
 }
 
+// Ocupado / advertencia -> amarillo suave pero legible
 .slots .btn-danger {
-  background-color: $yellow-warning;
-  color: $white;
+  background: linear-gradient(135deg, $yellow-soft, $yellow-strong);
+  color: #854d0e;
+  box-shadow: 0 10px 22px rgba($yellow-strong, 0.4);
 }
 
-// Acciones y botones
+.slots .btn-success:hover:not(:disabled),
+.slots .btn-danger:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+}
+
+// ========== ACCIONES / CTA FINAL ==========
+
+.actions {
+  margin-top: 24px;
+  text-align: center;
+}
+
 .actions button {
+  position: relative;
   padding: 12px 30px;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
+  font-size: 1.05rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, $blue-main, $green-sec);
+  color: $white;
+  box-shadow: 0 12px 26px rgba($blue-main, 0.6);
+  overflow: hidden;
+}
+
+// Efecto de brillo en el CTA
+.actions button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba($white, 0.8) 0%,
+    transparent 40%,
+    transparent 60%,
+    rgba($white, 0.95) 100%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.55s ease-out;
+  pointer-events: none;
+}
+
+.actions button:hover:not(:disabled) {
+  background: linear-gradient(135deg, $blue-light, $green-sec);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 18px 32px rgba($blue-main, 0.75);
+
+  &::after {
+    transform: translateX(130%);
+  }
 }
 
 .actions button:disabled {
-  background-color: $blue-light;
+  background: linear-gradient(135deg, $blue-soft-2, $blue-soft);
+  box-shadow: 0 8px 18px rgba(148, 163, 184, 0.35);
 }
 
-.actions button:hover {
-  background-color: $blue-light;
+// ========== RESUMEN LATERAL ==========
+
+@keyframes summaryFloat {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 14px 30px rgba(148, 163, 184, 0.45);
+  }
+  100% {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(148, 163, 184, 0.65);
+  }
+}
+
+.summary-card {
+  background: radial-gradient(circle at top left, rgba($blue-soft-2, 0.9), rgba($white, 0.98));
+  border-radius: 22px;
+  padding: 18px 18px 16px;
+  border: 1px solid rgba($blue-soft-2, 0.9);
+  box-shadow:
+    0 14px 30px rgba(148, 163, 184, 0.45),
+    0 0 0 1px rgba($white, 0.9);
+  position: sticky;
+  top: 18px;
+  animation: summaryFloat 18s ease-in-out infinite alternate;
+}
+
+.summary-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: $blue-main;
+}
+
+.summary-placeholder {
+  font-size: 0.88rem;
+  color: $text-muted;
+  margin-bottom: 10px;
+}
+
+.summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.summary-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.86rem;
+  gap: 8px;
+}
+
+.summary-label {
+  color: $text-muted;
+}
+
+.summary-value {
+  font-weight: 500;
+  color: $text-main;
+}
+
+.summary-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 150px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  background: linear-gradient(135deg, $blue-main, $green-sec);
+  color: $white;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.summary-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba($yellow-soft, 0.9);
+  color: #854d0e;
+  font-size: 0.8rem;
+}
+
+.summary-status.success {
+  background: rgba($green-soft, 0.95);
+  color: #065f46;
+}
+
+.summary-status-icon {
+  font-size: 1rem;
+}
+
+.reassurance-card {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba($blue-soft, 0.9);
+  border: 1px dashed rgba($blue-main, 0.35);
+  font-size: 0.85rem;
+}
+
+.reassurance-card h4 {
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: $blue-main;
+}
+
+.reassurance-card ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.reassurance-card li {
+  margin-bottom: 4px;
+  color: $text-main;
 }

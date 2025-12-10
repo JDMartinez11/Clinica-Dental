@@ -1,74 +1,116 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  AfterViewInit,
+  ElementRef,
+  ViewChild
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+interface Tooth {
+  x: number;
+  y: number;
+  radius: number;
+}
 
 @Component({
   selector: 'app-brushing-game',
+  standalone: true,
   templateUrl: './brushing-game.html',
-  styleUrls: ['./brushing-game.scss'],  // Cambié la ruta aquí a .scss
-  imports: [CommonModule]  // Asegúrate de tener esto para *ngFor y *ngIf
+  styleUrls: ['./brushing-game.scss'],
+  imports: [CommonModule]
 })
-export class BrushingGameComponent implements OnInit, OnDestroy {
+export class BrushingGameComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('teethContainer') teethContainer!: ElementRef<HTMLDivElement>;
+
   score = 0;
   timer = 30;
-  interval: any;
-  teeth: any[] = [];
+  private intervalId: any;
+  teeth: Tooth[] = [];
   gameOver = false;
 
-  ngOnInit() {
-    this.generateTeeth();
+  ngOnInit(): void {
+    // Esperamos a AfterViewInit para tener el tamaño real del contenedor
+  }
+
+  ngAfterViewInit(): void {
+    this.resetBoard();
     this.startTimer();
   }
 
-  generateTeeth() {
-    for (let i = 0; i < 5; i++) {
-      const xPosition = Math.random() * (window.innerWidth - 100);
-      const yPosition = Math.random() * (window.innerHeight - 100);
-      this.teeth.push({
-        x: xPosition,
-        y: yPosition,
-        radius: 30
-      });
-    }
-  }
-
-  brushTooth() {
-    if (this.gameOver) return;
-    this.score++;
+  private resetBoard(): void {
     this.teeth = [];
     this.generateTeeth();
   }
 
-  startTimer() {
-    this.interval = setInterval(() => {
+  private generateTeeth(): void {
+    const container = this.teethContainer.nativeElement;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    const radius = 30;
+    const margin = 8;
+
+    this.teeth = [];
+
+    for (let i = 0; i < 5; i++) {
+      const x = Math.random() * (width - 2 * radius - margin * 2) + margin;
+      const y = Math.random() * (height - 2 * radius - margin * 2) + margin;
+
+      this.teeth.push({ x, y, radius });
+    }
+  }
+
+  brushTooth(): void {
+    if (this.gameOver) return;
+    this.score++;
+    this.resetBoard();
+  }
+
+  private startTimer(): void {
+    this.clearTimer();
+
+    this.timer = 30;
+    this.gameOver = false;
+
+    this.intervalId = setInterval(() => {
       if (this.timer > 0) {
         this.timer--;
       } else {
-        clearInterval(this.interval);
         this.gameOver = true;
+        this.clearTimer();
         alert(`¡Tiempo agotado! Tu puntuación final es: ${this.score}`);
         this.showDentalInfo();
       }
     }, 1000);
   }
 
-  showDentalInfo() {
-    alert("¡Felicitaciones por jugar! Aquí tienes un dato sobre odontología:\n\n" +
-          "El cepillado regular de tus dientes es esencial para mantener una buena salud bucal. " +
-          "Asegúrate de cepillarte al menos dos veces al día durante 2 minutos, " +
-          "y no olvides visitar al dentista regularmente para prevenir problemas dentales.");
+  private clearTimer(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
   }
 
-  resetGame() {
+  private showDentalInfo(): void {
+    alert(
+      '¡Felicitaciones por jugar! Aquí tienes un dato sobre odontología:\n\n' +
+        'El cepillado regular de tus dientes es esencial para mantener una buena salud bucal. ' +
+        'Cepíllate al menos dos veces al día durante 2 minutos, ' +
+        'y visita a tu dentista regularmente para prevenir problemas dentales.'
+    );
+  }
+
+  resetGame(): void {
     this.score = 0;
     this.timer = 30;
-    this.teeth = [];
     this.gameOver = false;
-    this.generateTeeth();
-    clearInterval(this.interval);
+    this.resetBoard();
     this.startTimer();
   }
 
-  ngOnDestroy() {
-    clearInterval(this.interval);
+  ngOnDestroy(): void {
+    this.clearTimer();
   }
 }

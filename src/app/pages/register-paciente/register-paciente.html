@@ -1,0 +1,58 @@
+<div class="register-container">
+  <h2>Registro de paciente</h2>
+  <p class="subtitle">
+    Crea tu cuenta para agendar y consultar tus citas.
+  </p>
+
+  <form (ngSubmit)="registrar()" class="reg-form">
+    <label for="nombre">Nombre completo</label>
+    <input
+      id="nombre"
+      type="text"
+      [(ngModel)]="nombre"
+      name="nombre"
+      required
+      placeholder="Ej. Juan Pérez"
+    />
+
+    <label for="email">Correo electrónico</label>
+    <input
+      id="email"
+      type="email"
+      [(ngModel)]="email"
+      name="email"
+      required
+      placeholder="tucorreo@ejemplo.com"
+    />
+
+    <label for="telefono">Teléfono</label>
+    <input
+      id="telefono"
+      type="text"
+      [(ngModel)]="telefono"
+      name="telefono"
+      placeholder="Opcional"
+    />
+
+    <label for="password">Contraseña</label>
+    <input
+      id="password"
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      required
+      placeholder="Mínimo 6 caracteres"
+    />
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Registrando…' : 'Crear cuenta' }}
+    </button>
+
+    <p *ngIf="error" class="error-msg">{{ error }}</p>
+    <p *ngIf="msg" class="ok-msg">{{ msg }}</p>
+  </form>
+
+  <div class="extra-links">
+    <a routerLink="/login">¿Ya tienes cuenta? Inicia sesión</a>
+  </div>
+</div>

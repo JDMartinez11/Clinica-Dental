@@ -1,126 +1,430 @@
 <!-- Sección Servicios -->
-<section id="servicios" class="container my-5 text-center">
-  <h2 class="text-primary mb-4 display-4" data-aos="fade-up">Nuestros Servicios</h2>
-  <p class="lead mb-4" data-aos="fade-up" data-aos-duration="1500">
-    Ofrecemos una amplia variedad de servicios para cuidar tu salud bucal. Con tecnología avanzada, atención personalizada, y los mejores especialistas del área, aseguramos resultados óptimos para toda la familia. Nuestro compromiso es ofrecerte una experiencia cómoda y efectiva en cada uno de nuestros tratamientos.
+<section id="servicios" class="my-5 text-center">
+  <div class="container">
+    <h2
+      class="text-primary mb-4 display-4"
+      data-aos="fade-up"
+    >
+      Nuestros Servicios
+    </h2>
+
+    <p
+      class="lead mb-3"
+      data-aos="fade-up"
+      data-aos-duration="1500"
+    >
+      En Mi Clínica Dental combinamos diagnóstico digital, materiales de alta calidad
+      y un trato cercano para ofrecerte tratamientos que cuidan tanto la salud como
+      la estética de tu sonrisa.
+    </p>
+
+    <p
+      class="mb-4 text-muted"
+      data-aos="fade-up"
+      data-aos-duration="1600"
+    >
+      Desde revisiones y limpiezas periódicas hasta implantes, ortodoncia y estética dental,
+      diseñamos un plan adaptado a cada paciente según su edad, hábitos y necesidades.
+    </p>
+
+    <!-- Pequeño resumen en 3 columnas -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-4 col-sm-6 mb-3" data-aos="fade-up" data-aos-duration="1600">
+        <div class="card-elevated">
+          <h5 class="mb-1">Primera visita</h5>
+          <p class="small mb-0">
+            Evaluación completa, radiografías si son necesarias y un plan de tratamiento claro.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 mb-3" data-aos="fade-up" data-aos-duration="1700">
+        <div class="card-elevated">
+          <h5 class="mb-1">Tratamientos personalizados</h5>
+          <p class="small mb-0">
+            Ajustamos cada procedimiento a tu situación, expectativas y nivel de sensibilidad.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 mb-3" data-aos="fade-up" data-aos-duration="1800">
+        <div class="card-elevated">
+          <h5 class="mb-1">Seguimiento y prevención</h5>
+          <p class="small mb-0">
+            Revisiones periódicas para mantener tus resultados y prevenir nuevos problemas.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRID DE SERVICIOS (DINÁMICO) -->
+    <div class="row justify-content-center">
+      <article
+        class="col-md-4 col-sm-6 mb-4"
+        *ngFor="let service of services"
+        data-aos="fade-up"
+        data-aos-duration="1500"
+      >
+        <div class="card shadow-lg border-0 hover-shadow">
+          <div class="card-body">
+            <!-- Icono principal del servicio -->
+            <i class="{{ service.icon }} service-main-icon mt-4"></i>
+
+            <h5 class="card-title mt-3">
+              {{ service.name }}
+            </h5>
+
+            <p class="card-text">
+              {{ service.shortDescription }}
+            </p>
+
+            <h6 class="text-secondary">
+              {{ service.label }}:
+            </h6>
+
+            <ul class="list-unstyled">
+              <li *ngFor="let item of service.bullets">
+                <i class="fas fa-check-circle"></i>
+                {{ item }}
+              </li>
+            </ul>
+
+            <button
+              type="button"
+              class="btn btn-primary w-100"
+              (click)="showDetails(service)"
+            >
+              Más información
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- BLOQUE EDUCATIVO CORTO BAJO EL GRID -->
+    <div
+      class="row justify-content-center mt-4"
+      data-aos="fade-up"
+      data-aos-duration="1500"
+    >
+      <div class="col-md-10">
+        <div class="card-elevated text-start">
+          <h5 class="mb-2">¿Cómo saber qué tratamiento es adecuado para mí?</h5>
+          <p class="mb-2 small text-muted">
+            Antes de indicar cualquier tratamiento realizamos una historia clínica completa,
+            revisamos tus dientes y encías, y cuando es necesario tomamos radiografías o fotos
+            para valorar la posición de las piezas, el estado del hueso y la articulación.
+          </p>
+          <p class="mb-2 small text-muted">
+            A partir de esa información te explicamos las opciones disponibles: en algunos casos
+            será suficiente una <strong>limpieza profesional y refuerzo de hábitos</strong>;
+            en otros, podemos recomendar <strong>ortodoncia para alinear dientes</strong>,
+            <strong>implantes</strong> para reponer piezas ausentes o tratamientos
+            <strong>estéticos</strong> para armonizar la sonrisa. Siempre buscamos la alternativa
+            más conservadora y predecible a largo plazo.
+          </p>
+          <p class="small text-muted mb-0">
+            Recuerda que un buen plan de prevención (cepillado con pasta fluorada, limpieza
+            interdental y revisiones periódicas) es la base para evitar tratamientos más complejos
+            en el futuro.
+          </p>
+        </div>
+      </div>
+    </div>
+
+   <!-- SECCIÓN: NUESTROS ESPECIALISTAS --> 
+<div
+  id="especialistas"
+  class="container mt-5"
+  data-aos="fade-up"
+  data-aos-duration="1500"
+>
+  <h3 class="text-primary mb-3 text-center">Nuestros especialistas</h3>
+  <p class="text-muted mb-4 text-center">
+    Contamos con diferentes áreas de especialidad para atender cada necesidad de tu salud bucal.
+    En tu valoración inicial te indicaremos con quién es mejor comenzar según tu caso.
   </p>
 
   <div class="row justify-content-center">
-    <!-- Servicio 1 - Implantes Dentales -->
-    <article class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-duration="1500">
-      <div class="card shadow-lg border-0 hover-shadow">
-        <div class="card-body">
-          <i class="fas fa-tooth fa-5x text-primary mt-4"></i>
-          <h5 class="card-title mt-3">Implantes Dentales</h5>
-          <p class="card-text">Los implantes dentales son la solución ideal para la reposición de dientes perdidos. Utilizamos tecnología avanzada para asegurar un tratamiento duradero y estético, mejorando tanto la función masticatoria como la apariencia.</p>
-          <h6 class="text-secondary">Beneficios:</h6>
-          <ul class="list-unstyled">
-            <li><i class="fas fa-check-circle"></i> Alta durabilidad y resistencia.</li>
-            <li><i class="fas fa-check-circle"></i> Resultados estéticos naturales.</li>
-            <li><i class="fas fa-check-circle"></i> Recupere la función masticatoria.</li>
-            <li><i class="fas fa-check-circle"></i> Solución permanente y segura.</li>
-            <li><i class="fas fa-check-circle"></i> Procedimiento mínimamente invasivo.</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary w-100">Más Información</a>
+    <!-- Odontólogo general -->
+    <article class="col-md-4 col-sm-6 mb-4">
+      <div class="card-elevated especialista-card">
+        <div class="especialista-photo-wrapper">
+          <img
+            src="assets/images/doc3H.jpeg"
+            alt="Odontólogo general - Dr. Carlos Herrera"
+            class="especialista-photo"
+            loading="lazy"
+          />
+        </div>
+        <div class="especialista-main">
+          <h5 class="mb-1">Dr. Carlos Herrera</h5>
+          <p class="especialista-role mb-0">Odontólogo general</p>
+        </div>
+
+        <!-- Info que aparece al pasar el cursor -->
+        <div class="especialista-overlay">
+          <h6 class="mb-1">Odontólogo general</h6>
+          <p class="small mb-2">
+            El “médico de cabecera” de la boca. Hace revisiones, limpiezas, rellenos,
+            diagnósticos iniciales y te deriva a otros especialistas si hace falta.
+          </p>
+          <p class="especialista-opinion mb-0">
+            “Creo que una buena revisión a tiempo puede evitar tratamientos largos y costosos.”
+          </p>
         </div>
       </div>
     </article>
 
-    <!-- Servicio 2 - Ortodoncia -->
-    <article class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-duration="1500">
-      <div class="card shadow-lg border-0 hover-shadow">
-        <div class="card-body">
-          <i class="fas fa-braces fa-5x text-primary mt-4"></i>
-          <h5 class="card-title mt-3">Ortodoncia</h5>
-          <p class="card-text">La ortodoncia es el tratamiento ideal para alinear los dientes y corregir problemas de mordida. Ofrecemos tanto brackets tradicionales como alineadores invisibles, adaptándonos a tus necesidades y preferencias.</p>
-          <h6 class="text-secondary">Ventajas:</h6>
-          <ul class="list-unstyled">
-            <li><i class="fas fa-check-circle"></i> Mejora la estética dental.</li>
-            <li><i class="fas fa-check-circle"></i> Corrige problemas de mordida.</li>
-            <li><i class="fas fa-check-circle"></i> Alineadores invisibles disponibles.</li>
-            <li><i class="fas fa-check-circle"></i> Mejora la salud bucal a largo plazo.</li>
-            <li><i class="fas fa-check-circle"></i> Planificación digital de tratamientos.</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary w-100">Más Información</a>
+    <!-- Ortodoncista -->
+    <article class="col-md-4 col-sm-6 mb-4">
+      <div class="card-elevated especialista-card">
+        <div class="especialista-photo-wrapper">
+          <img
+            src="assets/images/doc1M.jpeg"
+            alt="Ortodoncista - Dra. Mariana López"
+            class="especialista-photo"
+            loading="lazy"
+          />
+        </div>
+        <div class="especialista-main">
+          <h5 class="mb-1">Dra. Mariana López</h5>
+          <p class="especialista-role mb-0">Ortodoncista</p>
+        </div>
+
+        <div class="especialista-overlay">
+          <h6 class="mb-1">Ortodontista</h6>
+          <p class="small mb-2">
+            Especialista en la posición de los dientes y de la mordida. Usa brackets o
+            alineadores transparentes para alinear dientes y corregir problemas de oclusión.
+          </p>
+          <p class="especialista-opinion mb-0">
+            “Mi objetivo es que tengas una sonrisa alineada sin sacrificar comodidad ni estética.”
+          </p>
         </div>
       </div>
     </article>
 
-    <!-- Servicio 3 - Blanqueamiento Dental -->
-    <article class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-duration="1500">
-      <div class="card shadow-lg border-0 hover-shadow">
-        <div class="card-body">
-          <i class="fas fa-teeth fa-5x text-primary mt-4"></i>
-          <h5 class="card-title mt-3">Blanqueamiento Dental</h5>
-          <p class="card-text">El blanqueamiento dental es un procedimiento estético que ayuda a eliminar manchas y devolverle el brillo natural a tus dientes. Usamos productos de alta calidad y tecnología, garantizando resultados visibles y duraderos.</p>
-          <h6 class="text-secondary">Beneficios:</h6>
-          <ul class="list-unstyled">
-            <li><i class="fas fa-check-circle"></i> Recupera el brillo natural de tus dientes.</li>
-            <li><i class="fas fa-check-circle"></i> Procedimiento rápido y seguro.</li>
-            <li><i class="fas fa-check-circle"></i> Resultados inmediatos y duraderos.</li>
-            <li><i class="fas fa-check-circle"></i> Apto para dientes sensibles.</li>
-            <li><i class="fas fa-check-circle"></i> Sin efectos secundarios a largo plazo.</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary w-100">Más Información</a>
+    <!-- Odontopediatra -->
+    <article class="col-md-4 col-sm-6 mb-4">
+      <div class="card-elevated especialista-card">
+        <div class="especialista-photo-wrapper">
+          <img
+            src="assets/images/doc7M.jpeg"
+            alt="Odontopediatra - Dra. Sofía Jiménez"
+            class="especialista-photo"
+            loading="lazy"
+          />
+        </div>
+        <div class="especialista-main">
+          <h5 class="mb-1">Dra. Sofía Jiménez</h5>
+          <p class="especialista-role mb-0">Odontopediatra</p>
+        </div>
+
+        <div class="especialista-overlay">
+          <h6 class="mb-1">Odontopediatra</h6>
+          <p class="small mb-2">
+            Especialista en niños. Atiende desde los primeros dientes de leche, manejo
+            de caries infantiles, hábitos orales (chupón, succión digital, etc.) y
+            educación de padres y peques.
+          </p>
+          <p class="especialista-opinion mb-0">
+            “Lo más importante es que los niños pierdan el miedo y aprendan a cuidar sus dientes jugando.”
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Periodoncista -->
+    <article class="col-md-4 col-sm-6 mb-4">
+      <div class="card-elevated especialista-card">
+        <div class="especialista-photo-wrapper">
+          <img
+            src="assets/images/doc4H.jpeg"
+            alt="Periodoncista - Dr. Alejandro Ruiz"
+            class="especialista-photo"
+            loading="lazy"
+          />
+        </div>
+        <div class="especialista-main">
+          <h5 class="mb-1">Dr. Alejandro Ruiz</h5>
+          <p class="especialista-role mb-0">Periodoncista</p>
+        </div>
+
+        <div class="especialista-overlay">
+          <h6 class="mb-1">Periodoncista</h6>
+          <p class="small mb-2">
+            Especialista en encías y hueso que rodean a los dientes. Trata gingivitis,
+            periodontitis, recesión de encías y realiza limpiezas profundas y cirugías
+            periodontales.
+          </p>
+          <p class="especialista-opinion mb-0">
+            “Unas encías sanas son la base de cualquier sonrisa bonita y duradera.”
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Endodoncista -->
+    <article class="col-md-4 col-sm-6 mb-4">
+      <div class="card-elevated especialista-card">
+        <div class="especialista-photo-wrapper">
+          <img
+            src="assets/images/doc8M.jpeg"
+            alt="Endodoncista - Dr. Diego Martínez"
+            class="especialista-photo"
+            loading="lazy"
+          />
+        </div>
+        <div class="especialista-main">
+          <h5 class="mb-1">Dr. Diego Martínez</h5>
+          <p class="especialista-role mb-0">Endodoncista</p>
+        </div>
+
+        <div class="especialista-overlay">
+          <h6 class="mb-1">Endodoncista</h6>
+          <p class="small mb-2">
+            Especialista en el nervio del diente. Realiza tratamientos de conductos
+            (endodoncia) cuando hay infección o daño pulpar, para conservar la pieza
+            en boca.
+          </p>
+          <p class="especialista-opinion mb-0">
+            “Salvar un diente natural, sin dolor, siempre será mi primera opción cuando es posible.”
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Cirujano oral y maxilofacial -->
+    <article class="col-md-4 col-sm-6 mb-4">
+      <div class="card-elevated especialista-card">
+        <div class="especialista-photo-wrapper">
+          <img
+            src="assets/images/doc7H.jpeg"
+            alt="Cirujano oral y maxilofacial - Dr. Javier Sánchez"
+            class="especialista-photo"
+            loading="lazy"
+          />
+        </div>
+        <div class="especialista-main">
+          <h5 class="mb-1">Dr. Javier Sánchez</h5>
+          <p class="especialista-role mb-0">Cirujano oral y maxilofacial</p>
+        </div>
+
+        <div class="especialista-overlay">
+          <h6 class="mb-1">Cirujano oral y maxilofacial</h6>
+          <p class="small mb-2">
+            Atiende cirugías más complejas: extracciones de cordales complicadas, quistes,
+            fracturas, cirugía ortognática y otros procedimientos del área maxilofacial.
+          </p>
+          <p class="especialista-opinion mb-0">
+            “La precisión y la planificación son clave para que una cirugía se sienta tan cómoda como una consulta.”
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Rehabilitador oral / Prostodoncista -->
+    <article class="col-md-4 col-sm-6 mb-4">
+      <div class="card-elevated especialista-card">
+        <div class="especialista-photo-wrapper">
+          <img
+            src="assets/images/doc5M.jpeg"
+            alt="Rehabilitadora oral - Dra. Paula Torres"
+            class="especialista-photo"
+            loading="lazy"
+          />
+        </div>
+        <div class="especialista-main">
+          <h5 class="mb-1">Dra. Paula Torres</h5>
+          <p class="especialista-role mb-0">Rehabilitadora oral / Prostodoncista</p>
+        </div>
+
+        <div class="especialista-overlay">
+          <h6 class="mb-1">Rehabilitador oral / Prostodoncista</h6>
+          <p class="small mb-2">
+            Se enfoca en restaurar la función y la estética: coronas, puentes, prótesis y
+            rehabilitaciones completas sobre dientes o implantes para recuperar la mordida
+            y la armonía de la sonrisa.
+          </p>
+          <p class="especialista-opinion mb-0">
+            “Me encanta cuando un paciente puede volver a comer y sonreír con confianza después de una rehabilitación.”
+          </p>
         </div>
       </div>
     </article>
   </div>
+</div>
 
-  <!-- Servicio 4 - Higiene Dental Profesional -->
-  <article class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-duration="1500">
-    <div class="card shadow-lg border-0 hover-shadow">
-      <div class="card-body">
-        <i class="fas fa-toothbrush fa-5x text-primary mt-4"></i>
-        <h5 class="card-title mt-3">Higiene Dental Profesional</h5>
-        <p class="card-text">La higiene dental profesional es clave para prevenir enfermedades bucales. Nuestro equipo de especialistas realiza una limpieza profunda que elimina placa, sarro y manchas, promoviendo una salud bucal óptima.</p>
-        <h6 class="text-secondary">Ventajas:</h6>
-        <ul class="list-unstyled">
-          <li><i class="fas fa-check-circle"></i> Previene caries y enfermedades de las encías.</li>
-          <li><i class="fas fa-check-circle"></i> Elimina el mal aliento.</li>
-          <li><i class="fas fa-check-circle"></i> Mejora la salud general de la boca.</li>
-          <li><i class="fas fa-check-circle"></i> Procedimiento rápido y no invasivo.</li>
+
+    <!-- MODAL / OVERLAY DETALLES DEL SERVICIO SELECCIONADO -->
+    <div
+      class="service-overlay"
+      *ngIf="selectedService"
+    >
+      <!-- Fondo oscurecido y borroso -->
+      <div
+        class="service-overlay__backdrop"
+        (click)="closeDetails()"
+      ></div>
+
+      <!-- Card de detalles -->
+      <div
+        class="service-details"
+        data-aos="zoom-in"
+        data-aos-duration="250"
+      >
+        <button
+          type="button"
+          class="service-details__close"
+          (click)="closeDetails()"
+          aria-label="Cerrar detalles"
+        >
+          ✕
+        </button>
+
+        <div class="service-details__header">
+          <i class="{{ selectedService.icon }} service-details__icon"></i>
+          <div>
+            <h3>{{ selectedService.name }}</h3>
+            <p class="service-details__tagline">
+              Información detallada del tratamiento
+            </p>
+          </div>
+        </div>
+
+        <p class="service-details__description">
+          {{ selectedService.longDescription }}
+        </p>
+
+        <h4>{{ selectedService.label }} destacados</h4>
+        <ul>
+          <li *ngFor="let point of selectedService.extraPoints">
+            <i class="fas fa-circle"></i>
+            {{ point }}
+          </li>
         </ul>
-        <a href="#contact" class="btn btn-primary w-100">Más Información</a>
+
+        <div class="service-details__cta">
+          <a href="#contacto" class="btn btn-primary">
+            Agendar una cita para {{ selectedService.name | lowercase }}
+          </a>
+        </div>
       </div>
     </div>
-  </article>
 
-  <!-- Servicio 5 - Cirugía Oral -->
-  <article class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-duration="1500">
-    <div class="card shadow-lg border-0 hover-shadow">
-      <div class="card-body">
-        <i class="fas fa-user-md fa-5x text-primary mt-4"></i>
-        <h5 class="card-title mt-3">Cirugía Oral</h5>
-        <p class="card-text">Nuestra cirugía oral cubre una amplia gama de procedimientos, desde extracciones simples hasta intervenciones más complejas, utilizando técnicas modernas para garantizar una recuperación rápida y segura.</p>
-        <h6 class="text-secondary">Beneficios:</h6>
-        <ul class="list-unstyled">
-          <li><i class="fas fa-check-circle"></i> Procedimientos mínimamente invasivos.</li>
-          <li><i class="fas fa-check-circle"></i> Recuperación rápida y sin complicaciones.</li>
-          <li><i class="fas fa-check-circle"></i> Trato personalizado y atención especializada.</li>
-        </ul>
-        <a href="#contact" class="btn btn-primary w-100">Más Información</a>
-      </div>
-    </div>
-  </article>
-  <!-- Servicio 1 - Implantes Dentales -->
-<article class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-duration="1500">
-  <div class="card shadow-lg border-0 hover-shadow">
-    <div class="card-body">
-      <i class="fas fa-tooth fa-5x text-primary mt-4"></i>
-      <h5 class="card-title mt-3">Implantes Dentales</h5>
-      <p class="card-text">Los implantes dentales son la solución ideal para la reposición de dientes perdidos. Utilizamos tecnología avanzada para asegurar un tratamiento duradero y estético. Este tratamiento es ideal para pacientes que necesitan una opción permanente para reemplazar dientes ausentes, garantizando una sonrisa funcional y natural.</p>
-      <h6 class="text-secondary">Beneficios:</h6>
-      <ul class="list-unstyled">
-        <li><i class="fas fa-check-circle"></i> Alta durabilidad y resistencia.</li>
-        <li><i class="fas fa-check-circle"></i> Resultados estéticos naturales.</li>
-        <li><i class="fas fa-check-circle"></i> Recupere la función masticatoria.</li>
-        <li><i class="fas fa-check-circle"></i> Solución permanente y segura.</li>
-        <li><i class="fas fa-check-circle"></i> Procedimiento mínimamente invasivo y sin dolor.</li>
-      </ul>
-      <a href="#contact" class="btn btn-primary w-100">Más Información</a>
+    <!-- CTA final dentro de la página de servicios -->
+    <div
+      class="mt-5"
+      data-aos="fade-up"
+      data-aos-duration="1500"
+    >
+      <h3 class="mb-2">¿Listo para dar el siguiente paso?</h3>
+      <p class="text-muted mb-3">
+        Si tienes dudas sobre qué tratamiento necesitas o quieres una segunda opinión,
+        agenda una valoración con nuestro equipo. Estaremos encantados de orientarte.
+      </p>
+      <a href="/#contacto" class="btn btn-primary btn-lg">
+        Solicitar valoración
+      </a>
     </div>
   </div>
-</article>
-
 </section>

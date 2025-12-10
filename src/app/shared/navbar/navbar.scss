@@ -1,37 +1,147 @@
-/* navbar.scss */
-nav {
-  background-color: #333;  /* Cambia el color de fondo */
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  width: 100%;
+// Colores locales para el navbar
+$blue-main: #2563EB;
+$blue-light: #3B82F6;
+
+.navbar {
+  position: sticky;
   top: 0;
-  left: 0;
-  z-index: 999;  /* Asegúrate de que la barra esté por encima de otros elementos */
+  z-index: 50;
+  width: 100%;
+  height: 64px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
 }
 
-.navbar-logo {
-  font-size: 1.8rem;
-  font-weight: bold;
+/* Logo */
+
+.navbar-logo a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: $blue-main;
 }
+
+.logo-icon {
+  font-size: 24px;
+}
+
+.logo-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Links */
 
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 1.8rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-links a {
+  position: relative;
   text-decoration: none;
-  color: white;
-  font-size: 1.1rem;
-  padding: 5px 10px;
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 4px 0;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
+/* subrayado animado */
+.navbar-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, $blue-main, $blue-light);
+  transition: width 0.25s ease;
+}
+
+/* hover */
+
 .navbar-links a:hover {
-  background-color: #555;
-  border-radius: 4px;
+  color: $blue-main;
+  transform: translateY(-1px);
+}
+
+.navbar-links a:hover::after {
+  width: 100%;
+}
+
+/* link activo (ruta actual) */
+
+.navbar-links a.active {
+  color: $blue-main;
+}
+
+.navbar-links a.active::after {
+  width: 100%;
+}
+
+/* Responsive sencillo */
+
+@media (max-width: 900px) {
+  .navbar {
+    padding: 0 16px;
+  }
+
+  .navbar-links {
+    gap: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .logo-text {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 8px 16px 12px;
+    gap: 6px;
+  }
+
+  .navbar-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+.navbar-logo .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.navbar-logo-img {
+  height: 50px;   // ajusta según el tamaño que quieras
+  width: auto;
+  display: block;
+}
+
+.logo-text {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #0f172a; // o tu azul principal
 }

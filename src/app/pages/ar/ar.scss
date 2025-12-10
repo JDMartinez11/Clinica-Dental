@@ -1,68 +1,180 @@
-// Colores personalizados
-$blue-main: #2563EB;
-$blue-light: #3B82F6;
-$green-sec: #10B981;
+// 🎨 Paleta de marca
+$blue-main: #2563EB;   // profesionalismo
+$blue-light: #3B82F6;  // tecnología
+$green-sec: #10B981;   // salud / bienestar
 $yellow-warning: #F59E0B;
 $white: #FFFFFF;
-$gray-light: #f8f9fa;
+$gray-light: #F8F9FA;
+
+// Derivados suaves (pastel)
+$blue-soft: #EFF6FF;
+$blue-soft-2: #DBEAFE;
+$green-soft: #DCFCE7;
+$text-main: #0F172A;
+$text-muted: #6B7280;
 
 // Fuentes personalizadas
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap');
 
-// Estilos generales
+// ========== BASE ==========
+
 body {
   font-family: 'Inter', sans-serif;
-  background-color: $gray-light;
+  background-color: $blue-soft;
   margin: 0;
   padding: 0;
+  color: $text-main;
 }
 
+// ========== CONTENEDOR AR ==========
+
 .ar-container {
-  background-color: $white;
-  padding: 50px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  background: linear-gradient(135deg, $white 0%, $blue-soft 50%, $green-soft 100%);
+  padding: 40px 32px 36px;
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(148, 163, 184, 0.35);
   margin-top: 30px;
   text-align: center;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+
+  // halo suave tipo “glow” alrededor
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -25% -15% auto -15%;
+    background:
+      radial-gradient(circle at top left, rgba($blue-soft-2, 0.9), transparent 60%),
+      radial-gradient(circle at top right, rgba($white, 0.9), transparent 60%);
+    opacity: 0.9;
+    filter: blur(10px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 }
+
+// ========== TÍTULO ==========
 
 h2 {
   font-family: 'Bebas Neue', sans-serif;
-  color: $blue-main;
-  font-size: 2.5rem;
-  font-weight: bold;
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  background: linear-gradient(120deg, $blue-main, $blue-light);
+  -webkit-background-clip: text;
+  color: transparent;
 }
+
+h2 + p {
+  color: $text-muted;
+  font-size: 0.98rem;
+  max-width: 580px;
+  margin: 0 auto 24px;
+}
+
+// ========== MODEL VIEWER ==========
+
 
 .model-viewer {
   width: 100%;
-  height: 500px; /* Fijamos una altura específica para que el modelo tenga espacio suficiente */
-  margin-top: 30px;
-  border-radius: 0; /* Quitamos el border-radius para asegurar que no afecte al modelo 3D */
-  box-shadow: none; /* Removemos la sombra del modelo 3D */
+  height: 480px; // suficiente espacio para el modelo
+  margin-top: 24px;
+  border-radius: 16px;
+
+  // Fondo con contraste suave para que el modelo blanco no se pierda
+  background: radial-gradient(
+    circle at center,
+    #e5e7eb 0%,   // gris claro en el centro
+    $blue-soft 45%,
+    $blue-soft-2 100%
+  );
+  box-shadow: 0 14px 30px rgba(148, 163, 184, 0.45);
+  border: 1px solid rgba($blue-soft-2, 0.9);
+  overflow: hidden;
 }
 
+/* Cuando quieras aún más contraste (escena de dientes blancos) */
+.model-viewer--high-contrast {
+  background: radial-gradient(
+    circle at center,
+    #d1d5db 0%,
+    #e5e7eb 45%,
+    $blue-soft-2 100%
+  );
+}
+
+// ========== DESCRIPCIÓN DE ESCENA ==========
+
 .scene-description p {
-  font-size: 1.2rem;
-  color: #333;
+  font-size: 1.02rem;
+  color: $text-muted;
   font-weight: 500;
+  margin-top: 22px;
+}
+
+// ========== SELECTOR DE ESCENA ==========
+
+.scene-selector {
+  margin-top: 22px;
 }
 
 .scene-selector button {
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin: 5px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba($blue-soft-2, 0.9);
+  background-color: $white;
+  color: $text-main;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .scene-selector button:hover {
-  background-color: $blue-light;
+  background: linear-gradient(135deg, $blue-main, $blue-light);
   color: $white;
-  transform: scale(1.05);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.5);
 }
+
+// Si manejas un botón activo vía clase .active
+.scene-selector button.active {
+  background: linear-gradient(135deg, $green-sec, lighten($green-sec, 6%));
+  color: $white;
+  box-shadow: 0 10px 22px rgba(16, 185, 129, 0.5);
+  border-color: transparent;
+}
+
+// ========== GRUPO DE BOTONES EXTRA (SI LOS USAS) ==========
 
 .btn-group .btn {
   padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 1.1rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  border: 1px solid rgba($blue-soft-2, 0.9);
+  background-color: $white;
+  color: $text-main;
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    background: linear-gradient(135deg, $blue-light, $blue-main);
+    color: $white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.5);
+  }
 }
 
 .text-center {
