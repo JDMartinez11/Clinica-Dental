@@ -8,6 +8,8 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideServiceWorker } from '@angular/service-worker';
 
+import { environment } from '../environments/environment'; // 👈 importante
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true, runCoalescing: true }),
@@ -20,21 +22,11 @@ export const appConfig: ApplicationConfig = {
     // Service worker (solo en producción)
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
 
-    // Firebase App con config desde variables de entorno
-    provideFirebaseApp(() =>
-      initializeApp({
-        apiKey: process.env['NG_APP_FIREBASE_API_KEY'] || "",
-        authDomain: process.env['NG_APP_FIREBASE_AUTH_DOMAIN'] || "",
-        projectId: process.env['NG_APP_FIREBASE_PROJECT_ID'] || "",
-        storageBucket: process.env['NG_APP_FIREBASE_STORAGE_BUCKET'] || "",
-        messagingSenderId: process.env['NG_APP_FIREBASE_MESSAGING_SENDER_ID'] || "",
-        appId: process.env['NG_APP_FIREBASE_APP_ID'] || "",
-        measurementId: process.env['NG_APP_FIREBASE_MEASUREMENT_ID'] || ""
-      })
-    ),
+    // Firebase App con configuración desde environment
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
 
     // Firebase Auth y Firestore
     provideAuth(() => getAuth()),
