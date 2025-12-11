@@ -180,3 +180,92 @@ h2 + p {
 .text-center {
   text-align: center;
 }
+/* Ajuste responsivo para móviles */
+@media screen and (max-width: 768px) {
+  model-viewer,
+  canvas {
+    width: 100% !important;
+    height: 70vh !important;
+    max-height: 500px;
+    border-radius: 12px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .ar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .ar-title {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+}
+/* Estilos generales (desktop / tablet) */
+.ar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.5rem;
+}
+
+.model-viewer {
+  width: 100%;
+  max-width: 800px;
+  height: 480px;
+  margin-top: 30px;
+  border-radius: 10px;
+  display: block;
+}
+
+/* Botones de escenas */
+.scene-selector .btn-group {
+  margin-top: 1.5rem;
+}
+
+.scene-selector .btn {
+  border-radius: 999px;
+}
+
+/* 🔹 Solo para pantallas pequeñas (celular) */
+@media (max-width: 768px) {
+  .ar-container {
+    padding: 1rem;
+  }
+
+  .model-viewer {
+    width: 100%;
+    height: 70vh;      /* ocupa ~70% del alto de la pantalla */
+    max-height: 600px;
+    margin-top: 10px;
+    border-radius: 12px;
+  }
+
+  .scene-description {
+    text-align: center;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+  }
+
+  .scene-selector .btn-group {
+    display: flex;
+    flex-wrap: wrap;          /* que los botones bajen a otra fila */
+    justify-content: center;
+  }
+
+  .scene-selector .btn {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+    margin: 0.25rem;
+  }
+}
+@media (max-width: 768px) {
+  .model-viewer {
+    height: 70vh !important;
+    margin-top: 10px !important;
+  }
+}

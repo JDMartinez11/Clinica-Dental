@@ -40,14 +40,19 @@ export class RegisterPacienteComponent {
         telefono: this.telefono,
       });
 
-      this.msg = 'Registro completado. Ahora puedes iniciar sesión.';
-      // Opcional: redirigir al login después de unos segundos
-      // this.router.navigate(['/login']);
-    } catch (e: any) {
-      console.error(e);
-      this.error = e?.message ?? 'No fue posible registrar la cuenta.';
-    } finally {
-      this.loading = false;
-    }
+     this.msg = 'Registro completado. Redirigiendo al inicio de sesión...';
+
+setTimeout(() => {
+  this.router.navigate(['/login']);
+}, 1500);
+ } catch (e: any) {
+  console.error(e);
+
+  if (e?.code === 'auth/email-already-in-use') {
+    this.error = 'Ya existe una cuenta con este correo. Por favor, inicia sesión.';
+  } else {
+    this.error = e?.message ?? 'No fue posible registrar la cuenta.';
   }
+}
+}
 }
