@@ -8,12 +8,12 @@ $dark-bg: #020617;
 
 .tooth-bot {
   position: fixed;
-  right: 20px;
-  bottom: 20px;
+  left: 20px;     /* 👉 MOVER A LA IZQUIERDA */
+  bottom: 20px;   /* 👉 Ajusta si quieres más alto */
   z-index: 80;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start; /* 👉 Importante: panel hacia la izquierda */
   gap: 8px;
   font-family: 'Inter', sans-serif;
 }

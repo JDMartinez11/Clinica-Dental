@@ -418,3 +418,41 @@ body.highlight-links a {
   box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.6);
   border-radius: 4px;
 }
+/* Mover TODO el widget a la izquierda y más arriba */
+n8n-chat-widget {
+  position: fixed !important;
+  left: 25px !important;
+  right: auto !important;
+  bottom: 150px !important; /* súbelo más si lo necesitas */
+  z-index: 99999 !important;
+}
+
+/* Ajustar la ventana del chat */
+n8n-chat-widget::part(window) {
+  bottom: 240px !important; /* mueve la ventana cuando se abre */
+  left: 25px !important;
+}
+
+/* Ajustar el botón flotante */
+n8n-chat-widget::part(toggle) {
+  left: 25px !important;
+  bottom: 150px !important;
+}
+
+/* Fuerza mover CUALQUIER widget de n8n */
+[n8n-chat], 
+n8n-chat, 
+n8n-chat-root, 
+n8n-chat-widget,
+div[n8n-chat] {
+  position: fixed !important;
+  left: 20px !important;
+  bottom: 150px !important;
+  right: auto !important;
+  z-index: 999999 !important;
+}
+
+/* mover ventana interna */
+[n8n-chat] * {
+  left: 20px !important;
+}

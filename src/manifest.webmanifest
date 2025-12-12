@@ -1,21 +1,22 @@
 {
-  "name": "Mi Aplicación Angular",
-  "short_name": "MiApp",
-  "description": "Aplicación Progresiva en Angular",
+  "name": "DentalClinic",
+  "short_name": "DentalClinic",
+  "description": "Clínica dental con servicios profesionales de salud bucal.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#1976d2",
+  "theme_color": "#4CAF50",
   "icons": [
     {
-      "src": "assets/icons/icon-192x192.png",
+      "src": "icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "assets/icons/icon-512x512.png",
+      "src": "icons/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable any"
     }
   ]
 }
