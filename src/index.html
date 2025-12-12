@@ -21,6 +21,14 @@
 
   <!-- Manifest PWA (SOLO este, ya sin la ruta a public/) -->
   <link rel="manifest" href="manifest.webmanifest">
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+	createChat({
+		webhookUrl: 'https://mhgtys.app.n8n.cloud/webhook/7da34571-0f74-4a3a-b4a6-f3e725060954/chat'
+	});
+</script>
 </head>
 <body>
   <app-root></app-root>
